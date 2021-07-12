@@ -1,0 +1,54 @@
+.profile {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.profile__box {
+  padding: 30px 30px 30px 30px;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+}
+.profile__boxRight {
+  align-items: center;
+  display: flex;
+}
+.profile__socialIcon {
+  margin: 10px;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 30px;
+}
+.profile__academics {
+  margin-top: 100px;
+}
+.profile__testScores {
+  padding: 30px 30px 30px 30px;
+
+  border: black solid 1px;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.greScore {
+  display: flex;
+  flex-direction: column;
+}
+.profile__detailBox {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+@media screen and (max-width: 677px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+  }
+  .profile__box {
+    flex-direction: column;
+    padding: 50px 30px 30px 30px;
+  }
+  .profile__socialIcon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

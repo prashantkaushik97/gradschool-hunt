@@ -12,6 +12,8 @@ import Home from "./components/Home";
 import Signup from "./components/Signup";
 import UpdateProfile from "./components/UpdateProfile";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
+import Header from "./components/Header";
 
 function App() {
   const user = useSelector(selectUser);
@@ -46,6 +48,10 @@ function App() {
         </Route>
         <Route exact path="/updateProfile">
           <UpdateProfile />
+        </Route>
+        <Route exact path="/profile">
+          <Header />
+          <Profile />
         </Route>
       </Switch>
     </Router>

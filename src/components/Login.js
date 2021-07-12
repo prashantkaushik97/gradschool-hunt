@@ -39,7 +39,7 @@ function Login() {
         console.log(payload.user);
       })
       .catch((error) => alert(error.message));
-    history.push("/updateProfile");
+    history.push("/");
   };
   return (
     <div className="login">
