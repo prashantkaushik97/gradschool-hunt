@@ -29,7 +29,7 @@ function NavUser() {
         </NavLink>
       </li>
       <li className="nav-item">
-        <button onClick={logoutOfApp}></button>
+        <button onClick={logoutOfApp}>Logout</button>
       </li>
     </Nav>
   );

@@ -110,13 +110,13 @@ const Navigator = styled.div`
   display: flex;
   width: 100%;
   div {
-    padding: 10px 10px 10px 10px;
+    padding: 10px 40px 10px 40px;
     :hover {
       background-color: lightgray;
     }
   }
   .active {
-    transform: scaleX(1);
+    transform: scaleX(1.1);
     border-bottom: 2px solid black;
   }
 `;

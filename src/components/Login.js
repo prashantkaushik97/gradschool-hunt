@@ -24,7 +24,7 @@ function Login() {
             displayName: userAuth.user.displayName,
           })
         );
-        history.push("/updateProfile");
+        history.push("/profile");
       })
       .catch((error) => alert(error.message));
   };
