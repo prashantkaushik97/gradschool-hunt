@@ -99,8 +99,9 @@ function DetailBox() {
   );
 }
 const Container = styled.div`
-  margin-top: 10px;
+  margin-top: 5px;
   padding-top: 5px;
+
   width: 900px;
   @media screen and (max-width: 677px) {
     width: 500px;
@@ -114,7 +115,6 @@ const Container = styled.div`
 `;
 const Navigator = styled.div`
   display: flex;
-  max-width: 900px;
 
   @media screen and (max-width: 477px) {
     width: 300px;
@@ -126,6 +126,8 @@ const Navigator = styled.div`
     }
   }
   div {
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px 40px 10px 40px;
     :hover {
       background-color: lightgray;

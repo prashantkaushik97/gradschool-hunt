@@ -13,10 +13,10 @@ function ProfileAcademics() {
             <SchoolIcon />
           </Logo>
           <h5>Undergrad</h5>
-          <h6>73%</h6>
+          <h6>Grade: 73%</h6>
 
           <span>
-            Computer Science and Engineering- Punjabi University, Patiala.
+            Computer Science and Engineering Punjabi University, Patiala.
           </span>
         </GradScore>
       </Info>
@@ -26,6 +26,7 @@ function ProfileAcademics() {
             <DescriptionIcon />
           </Logo>
           <h5>Publications</h5>
+          <h6>Total: 3</h6>
 
           <PublicationContainer>
             <Conferences>
@@ -43,6 +44,8 @@ function ProfileAcademics() {
             <WorkIcon />
           </Logo>
           <h5>Experience</h5>
+          <h6>Total: 11 months</h6>
+
           <span>System Engineer</span>
           <span>System Engineer</span>
         </Experience>
@@ -53,6 +56,8 @@ function ProfileAcademics() {
             <BuildIcon />
           </Logo>
           <h5>Projects</h5>
+          <h6>Total: 6</h6>
+
           <span>Revamping Supermarkets with AI and RSSi</span>
         </Publications>
       </Info>
@@ -64,6 +69,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  cursor: default;
   h4 {
     margin-left: auto;
     margin-right: auto;
@@ -73,28 +79,14 @@ const Container = styled.div`
     margin-right: auto;
     color: green;
   }
-  .div1 {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-  .div2 {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-  .div3 {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-  .div4 {
-    grid-area: 2 / 2 / 3 / 3;
+  h6 {
+    margin-left: auto;
+    margin-right: auto;
   }
   .experience {
   }
   .publications {
     margin: 0 0 0 0;
-  }
-  .hidden {
-    visibility: hidden;
-  }
-  .percentage {
-    font: 700;
   }
 `;
 const Logo = styled.div`
@@ -126,10 +118,10 @@ const GradScore = styled.div`
   h3 {
     color: red;
   }
-  h6 {
-    margin-left: auto;
-    margin-right: auto;
+  span {
+    text-align: center;
   }
+
   .hidden {
     visibility: hidden;
   }
