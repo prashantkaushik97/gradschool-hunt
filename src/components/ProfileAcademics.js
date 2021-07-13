@@ -12,7 +12,7 @@ function ProfileAcademics() {
           <Logo>
             <SchoolIcon />
           </Logo>
-          <h4>Undergrad</h4>
+          <h5>Undergrad</h5>
           <h6>73%</h6>
 
           <span>
@@ -125,6 +125,10 @@ const GradScore = styled.div`
   flex-direction: column;
   h3 {
     color: red;
+  }
+  h6 {
+    margin-left: auto;
+    margin-right: auto;
   }
   .hidden {
     visibility: hidden;
