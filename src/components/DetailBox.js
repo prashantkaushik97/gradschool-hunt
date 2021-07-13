@@ -101,14 +101,30 @@ function DetailBox() {
 const Container = styled.div`
   margin-top: 10px;
   padding-top: 5px;
-  max-width: 100%;
+  width: 900px;
+  @media screen and (max-width: 677px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 477px) {
+    width: 300px;
+  }
   .hidden {
     visibility: hidden;
   }
 `;
 const Navigator = styled.div`
   display: flex;
-  width: 100%;
+  max-width: 900px;
+
+  @media screen and (max-width: 477px) {
+    width: 300px;
+    div {
+      padding: 10px 40px 10px 40px;
+      :hover {
+        background-color: red;
+      }
+    }
+  }
   div {
     padding: 10px 40px 10px 40px;
     :hover {
@@ -116,7 +132,6 @@ const Navigator = styled.div`
     }
   }
   .active {
-    transform: scaleX(1.1);
     border-bottom: 2px solid black;
   }
 `;

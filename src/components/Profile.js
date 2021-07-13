@@ -3,13 +3,16 @@ import "./Profile.css";
 
 import { SocialIcon } from "react-social-icons";
 import DetailBox from "./DetailBox";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
 
 function Profile() {
+  const user = useSelector(selectUser);
   return (
     <div className="profile">
       <div className="profile__box">
         <div className="profile__boxLeft">
-          <h1>Prashant Kaushik</h1>
+          <h1>{user?.displayName}</h1>
           <h5>University of Ottawa</h5>
           <h5>Master of Electrical and Computer Engineering</h5>
         </div>
