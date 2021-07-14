@@ -46,8 +46,8 @@ function ProfileAcademics() {
           <h5>Experience</h5>
           <h6>Total: 11 months</h6>
 
-          <span>System Engineer</span>
-          <span>System Engineer</span>
+          <span>System Engineer: Infoys Ltd</span>
+          <span>Software Developer Intern: Invatu Technologies</span>
         </Experience>
       </Info>
       <Info className="projects">
