@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Select from "react-select";
-import UniversityList from "./UniversityList";
+import universityList from "./UniversityList";
 import WindowedSelect from "react-windowed-select";
 import SelectSearch from "react-select-search";
+const unversities = [];
 
-function UniversitySearch() {
+for (var key in universityList) {
+  
+  unversities.push({
+    label: universityList[key].label,
+    value: universityList[key].label
+  });
+}
+
+function UniversitySearch({label, onChange}) {
+
   return (
     <div>
-      <WindowedSelect options={UniversityList} />
+      <h1>{label}</h1>
+      <WindowedSelect options={unversities} onChange={onChange}/>
     </div>
   );
 }

@@ -3,12 +3,14 @@ import { Jumbotron } from "react-bootstrap";
 import Layout from "../components/Layout";
 import Select from "react-select";
 import UniversitySearch from "./UniversitySearch";
-
+function onChangeInput(value){
+  console.log(value.label)
+}
 function Home() {
   return (
     <Layout>
       <Jumbotron className="text-center">
-        <UniversitySearch></UniversitySearch>
+        <UniversitySearch onChange ={onChangeInput} label="Choose a university"></UniversitySearch>
       </Jumbotron>
     </Layout>
   );
