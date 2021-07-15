@@ -48,7 +48,6 @@ function UpdateProfile() {
   };
   return (
     <div>
-      <Header />
       <div className="updateProfile__form">
         <form>
           <div class="row">
