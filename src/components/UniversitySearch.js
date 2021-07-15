@@ -13,7 +13,7 @@ for (var key in universityList) {
   });
 }
 
-function UniversitySearch({ label, country }) {
+function UniversitySearch({ styles, label, country }) {
   const [universities, setUniversities] = useState([]);
   const [uniObj, setUniObj] = useState([]);
 
@@ -41,7 +41,7 @@ function UniversitySearch({ label, country }) {
 
     <div>
 
-      <WindowedSelect placeholder={<div>University</div>} options={uniObj} />
+      <WindowedSelect styles={styles} placeholder={<div>University</div>} options={uniObj} />
       {console.log(country)}
 
     </div>

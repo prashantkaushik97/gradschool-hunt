@@ -22,4 +22,13 @@
 }
 .home__university {
   width: 400px;
+  margin-left: 10px;
+}
+.home__searchIcon {
+  margin-left: 10px;
+  background-color: lightgreen;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 20px;
 }
