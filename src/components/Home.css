@@ -4,6 +4,7 @@
 }
 .home__search {
   display: flex;
+  flex-direction: column;
   background-color: #a39ce9;
   width: 100%;
   align-items: center;
@@ -31,4 +32,9 @@
   min-height: 40px;
   padding: 10px 10px 10px 10px;
   border-radius: 20px;
+}
+.home__searchIcon:hover {
+  transition: all 0.2s ease-in-out;
+
+  box-shadow: 0px 0px 8px -1px #000000;
 }

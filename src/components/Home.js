@@ -34,6 +34,7 @@ function Home() {
   return (
     <Layout>
       <div className="home">
+
         <div className="home__search" >
           <div className="home__bar"> <div className="home__country">
             <Select placeholder={<div>Country</div>} options={options} onChange={(value) => {
