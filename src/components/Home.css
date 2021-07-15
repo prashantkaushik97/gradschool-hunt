@@ -1,0 +1,25 @@
+.home {
+  padding-top: 50px;
+  display: flex;
+}
+.home__search {
+  display: flex;
+  background-color: #a39ce9;
+  width: 100%;
+  align-items: center;
+  min-height: 500px;
+}
+.home__bar {
+  display: flex;
+  margin: auto auto;
+}
+.home__bar button {
+  background-color: lightgreen;
+  border: none;
+}
+.home__country {
+  width: 200px;
+}
+.home__university {
+  width: 400px;
+}

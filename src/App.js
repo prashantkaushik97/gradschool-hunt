@@ -47,7 +47,7 @@ function App() {
           {user ? <Home /> : <Login />}
         </Route>
         <Route exact path="/updateProfile">
-        <Header />
+          <Header />
 
           <UpdateProfile />
         </Route>
