@@ -10,7 +10,7 @@ function Header() {
   const user = useSelector(selectUser);
   return (
     <div className="header">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
           <Link to="/" className="navbar-brand">
             Gradschool Hunt

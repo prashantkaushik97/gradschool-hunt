@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
+import "./NavUser.css";
 import { Link, useHistory, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, selectUser } from "../features/userSlice";
@@ -31,7 +32,7 @@ function NavUser() {
       </li>
       <li className="nav-item">
         <Button
-          style={{ color: "white" }}
+          style={{ color: "Black" }}
           onClick={logoutOfApp}
           variant="outlined"
         >
