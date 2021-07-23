@@ -205,3 +205,8 @@ select option {
     padding-right: 0;
   }
 }
+.updateExperience__list {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}

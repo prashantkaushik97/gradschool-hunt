@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./UpdateProfile.css";
 import Header from "./Header";
+import { Col, ListGroup } from "react-bootstrap";
+import moment from "moment";
 function UpdateExperience() {
     const user = useSelector(selectUser);
     const history = useHistory();
@@ -13,24 +15,27 @@ function UpdateExperience() {
     const [designation, setDesignation] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
-    const [employer1, setEmployer1] = useState("");
-    const [designation1, setDesignation1] = useState("");
-    const [start1, setStart1] = useState("");
-    const [end1, setEnd1] = useState("");
-    const [employer2, setEmployer2] = useState("");
-    const [designation2, setDesignation2] = useState("");
-    const [start2, setStart2] = useState("");
-    const [end2, setEnd2] = useState("");
-    const [employer3, setEmployer3] = useState("");
-    const [designation3, setDesignation3] = useState("");
-    const [start3, setStart3] = useState("");
-    const [end3, setEnd3] = useState("");
-    const [employer4, setEmployer4] = useState("");
-    const [designation4, setDesignation4] = useState("");
-    const [start4, setStart4] = useState("");
-    const [end4, setEnd4] = useState("");
+    const [currently, setCurrently] = useState(false);
+    function difference(date1, date2) {
+        if (currently) {
+            let date3 = new Date()
+
+            let month = moment(date1).fromNow()
+            return month.slice(0, -3)
+        }
+        else {
+            let month = (parseInt((parseInt(Date.parse(date2)) - parseInt(Date.parse(date1))) / (1000 * 60 * 60 * 24 * 30))).toString() + " months"
+            return month
+        }
+
+    }
     const addMore = (event) => {
         event.preventDefault();
+        Array.from(document.querySelectorAll("input")).forEach(
+            input => (input.value = "")
+        );
+
+
         let exp = {}
         exp.name = employer
         exp.designation = designation
@@ -86,6 +91,29 @@ function UpdateExperience() {
                 <form>
                     <div class="row">
                         <h4>Work Experience</h4>
+                        {experience.map(item => {
+                            return (
+                                <div className="updateExperience__list">
+                                    <div className="updateExperience__name">
+                                        {item.name}
+                                    </div>
+                                    <div className="updateExperience__name">
+                                        {item.designation}
+                                    </div>
+                                    <div className="updateExperience__name">
+                                        {difference(item.start, item.end)}
+                                    </div>
+                                    <div className="updateExperience__name">
+                                        {item.end}
+                                    </div>
+                                </div>
+                            )
+                        })}
+
+
+
+                    </div>
+                    <div class="row">
                         <div class="input-group input-group-icon"><input type="text" placeholder="Employer Name" onChange={(e) => setEmployer(e.target.value)} />
                             <div class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
                                 <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z" />
@@ -97,14 +125,16 @@ function UpdateExperience() {
                         <div class="col-half">
                             <div class="input-group">
                                 <span>Start date</span>
-                                <input type="date" value="startDate" onChange={(e) => setStart(e.target.value)}></input>
+                                <input type="date" value="startDate" onChange={(e) => setStart((e.target.value))}></input>
                             </div>
                         </div>
                         <div class="col-half">
                             <div class="input-group">
                                 <span>End date</span>
-                                <input onChange={(e) => setEnd(e.target.value)} type="date" value="endDate"></input>
+                                <input onChange={(e) => setEnd((e.target.value))} type="date" value="endDate"></input>
                             </div>
+                            <div class="input-group"><input id="terms" type="checkbox" onClick={() => setCurrently(!currently)} /><label for="terms">I currently work here</label></div>
+
                         </div>
                     </div>
                     <div class="row">
