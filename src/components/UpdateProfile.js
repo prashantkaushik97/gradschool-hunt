@@ -74,7 +74,7 @@ function UpdateProfile() {
       .catch(function (error) {
         console.error("Error adding Product: ", error);
       });
-    history.push("/sellerdashboard");
+    history.push("/updateexperience");
   };
   return (
     <div>
@@ -192,19 +192,11 @@ function UpdateProfile() {
             </div>
           </div>
 
-          <div class="row">
-            <h4>Terms and Conditions</h4>
-            <div class="input-group">
-              <input id="terms" type="checkbox" />
-              <label for="terms">
-                I accept the terms and conditions for signing up to this
-                service, and hereby confirm I have read the privacy policy.
-              </label>
-            </div>
-          </div>
+
           <button type="submit" onClick={addUser}>
-            Create Account
+            Add details
           </button>
+
         </form>
       </div>
     </div>

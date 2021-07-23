@@ -14,6 +14,7 @@ import UpdateProfile from "./components/UpdateProfile";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Header from "./components/Header";
+import UpdateExperience from "./components/UpdateExperience";
 
 function App() {
   const user = useSelector(selectUser);
@@ -39,6 +40,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/updateexperience">
+          <UpdateExperience />
         </Route>
         <Route exact path="/signup">
           {user ? <Home /> : <Signup />}

@@ -13,11 +13,11 @@ for (var key in universityList) {
   });
 }
 
-function UniversitySearch({ styles, label, country }) {
+function UniversitySearch({ reset, styles, label, country }) {
   const [universities, setUniversities] = useState([]);
   const [uniObj, setUniObj] = useState([]);
-
   useEffect(() => {
+
     setUniObj([]);
     if (country == 'USA') {
       setUniObj(unversities)
@@ -41,7 +41,8 @@ function UniversitySearch({ styles, label, country }) {
 
     <div>
 
-      <WindowedSelect styles={styles} placeholder={<div>University</div>} options={uniObj} />
+      <WindowedSelect
+        styles={styles} placeholder={<div>University</div>} options={uniObj} />
       {console.log(country)}
 
     </div>

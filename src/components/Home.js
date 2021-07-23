@@ -12,6 +12,7 @@ function Home() {
 
   const [university, setUniversity] = useState(null);
   const [country, setCountry] = useState("USA");
+  const [resetUni, setResetUni] = useState(false);
 
 
   const styles = {
@@ -39,10 +40,11 @@ function Home() {
           <div className="home__bar"> <div className="home__country">
             <Select placeholder={<div>Country</div>} options={options} onChange={(value) => {
               setCountry(value.label)
+              setResetUni(true)
             }} styles={styles} />
           </div>
             <div className="home__university">
-              <UniversitySearch styles={styles} label="Choose a university" country={country} />
+              <UniversitySearch reset={resetUni} styles={styles} label="Choose a university" country={country} />
             </div>
             <SearchIcon className="home__searchIcon" />
           </div>
