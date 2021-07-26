@@ -18,7 +18,6 @@ function UpdateExperience() {
     const [currently, setCurrently] = useState(false);
     function difference(date1, date2) {
         if (currently) {
-            let date3 = new Date()
 
             let month = moment(date1).fromNow()
             return month.slice(0, -3)
@@ -41,6 +40,7 @@ function UpdateExperience() {
         exp.designation = designation
         exp.start = start
         exp.end = end
+        exp.totalExp = difference(start, end)
         setExperience(arr => [...arr, exp])
         console.log(experience)
     }
@@ -101,7 +101,7 @@ function UpdateExperience() {
                                         {item.designation}
                                     </div>
                                     <div className="updateExperience__name">
-                                        {difference(item.start, item.end)}
+                                        {item.totalExp}
                                     </div>
                                     <div className="updateExperience__name">
                                         {item.end}
@@ -133,7 +133,7 @@ function UpdateExperience() {
                                 <span>End date</span>
                                 <input onChange={(e) => setEnd((e.target.value))} type="date" value="endDate"></input>
                             </div>
-                            <div class="input-group"><input id="terms" type="checkbox" onClick={() => setCurrently(!currently)} /><label for="terms">I currently work here</label></div>
+                            <div class="input-group"><input id="terms" type="checkbox" onClick={() => { setCurrently(!currently); console.log(experience) }} /><label for="terms">I currently work here</label></div>
 
                         </div>
                     </div>
