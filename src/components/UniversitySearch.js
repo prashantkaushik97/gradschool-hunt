@@ -43,7 +43,6 @@ function UniversitySearch({ reset, styles, label, country }) {
 
       <WindowedSelect
         styles={styles} placeholder={<div>University</div>} options={uniObj} />
-      {console.log(country)}
 
     </div>
   );

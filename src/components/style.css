@@ -1,0 +1,10 @@
+.profileApplications {
+  display: flex;
+  flex-direction: column;
+}
+.profileApplications_addApplication {
+  margin: auto auto;
+}
+.profileApplications__uniSearch {
+  min-width: 100%;
+}

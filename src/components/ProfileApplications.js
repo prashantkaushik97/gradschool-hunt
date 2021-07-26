@@ -1,57 +1,115 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SchoolIcon from "@material-ui/icons/School";
 import DescriptionIcon from "@material-ui/icons/Description";
+import "./style.css"
+import UniversitySearch from "./UniversitySearch";
+import Select from "react-select";
+import { db, provider } from "../firebase";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+
 function ProfileApplications() {
+  const user = useSelector(selectUser);
+
+  const [Click, setClick] = useState(true)
+  const handleClick = () => {
+    setClick(!Click)
+  };
+  const [country, setCountry] = useState("USA");
+  const [university, setUniversity] = useState(null);
+  const [course, setCourse] = useState(null)
+  const [resetUni, setResetUni] = useState(false);
+  const [info, setInfo] = useState([]);
+
+  const options = [
+    { value: 'USA', label: 'USA' },
+    { value: 'Canada', label: 'Canada' },
+    { value: 'Australia', label: 'Australia' }
+  ]
+  const styles = {
+    control: (base, state) => ({
+      ...base,
+      border: state.isFocused ? 0 : 0,
+      // This line disable the blue border
+      boxShadow: state.isFocused ? 0 : 0,
+      "&:hover": {
+        border: state.isFocused ? 0 : 0
+      }
+    })
+  };
+  const addApplication = (event) => {
+    event.preventDefault()
+    let uni = (document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent
+    console.log(course)
+    db.collection("users")
+      .doc(user?.email).collection("Applications").doc(uni).set({
+        university: uni,
+        course: course
+      })
+  }
+
+  const fetchApplications = async () => {
+    setInfo([]);
+    db.collection("users")
+      .doc(user?.email)
+      .collection("Applications")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((element) => {
+          var data = element.data();
+          setInfo((arr) => [...arr, data]);
+        });
+      });
+  };
+  useEffect(() => {
+    fetchApplications()
+  }, [])
   return (
-    <Container>
-      <Info className="div1">
-        <Logo>
-          <SchoolIcon />
-        </Logo>
-        <GradScore>
-          <h5>Undergrad</h5>
-          <span>
-            Computer Science and Engineering- Punjabi University, Patiala.
+    <div className="profileApplications">
+      {Click ? <button className="profileApplications_addApplication" onClick={handleClick}>Add Application</button> : <Modal>
+        <ModalContent>
+
+          <span className="close" onClick={handleClick}>
+            &times;
           </span>
+          <form>
+            <h3>Add application</h3>
+            <Select placeholder={<div>Country</div>} options={options} onChange={(value) => {
+              setCountry(value.label)
+              setResetUni(true)
+            }} styles={styles} />
 
-          <h3>73%</h3>
-        </GradScore>
-      </Info>
-      <Info className="div2">
-        <Logo>
-          <DescriptionIcon />
-        </Logo>
-        <Publications>
-          <h5>Publications</h5>
-          <span>Revamping Supermarkets with AI and RSSi</span>
+            <UniversitySearch reset={resetUni} label="Choose a university" country={country} />
+            <input type="text" placeholder="Course" onChange={(e) => { setCourse(e.target.value) }}></input>
+            <input type="submit" onClick={(e) => { addApplication(e); handleClick() }} />
+          </form>
 
-          <h3>73%</h3>
-        </Publications>
-      </Info>
-      <Info className="div3">
-        <Logo>
-          <DescriptionIcon />
-        </Logo>
-        <Publications>
-          <h5>Publications</h5>
-          <span>Revamping Supermarkets with AI and RSSi</span>
+        </ModalContent>
+      </Modal>}
 
-          <h3>73%</h3>
-        </Publications>
-      </Info>
-      <Info className="div4">
-        <Logo>
-          <DescriptionIcon />
-        </Logo>
-        <Publications>
-          <h5>Publications</h5>
-          <span>Revamping Supermarkets with AI and RSSi</span>
+      <Container>
+        {info.map((object, i) => <Info >
+          <Logo>
+            <SchoolIcon />
+          </Logo>
+          <GradScore>
+            <h5>{object.university}</h5>
+            <span>
+              {object.course}
+            </span>
+            <Buttons>
 
-          <h3>73%</h3>
-        </Publications>
-      </Info>
-    </Container>
+            </Buttons>
+            <div classname="admit">Admitted</div>
+            <button>Rejected</button>
+          </GradScore>
+        </Info>)}
+
+
+      </Container>
+    </div>
+
   );
 }
 const Container = styled.div`
@@ -59,22 +117,6 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-
-  .div1 {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-  .div2 {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-  .div3 {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-  .div4 {
-    grid-area: 2 / 2 / 3 / 3;
-  }
-  .hidden {
-    visibility: hidden;
-  }
   .percentage {
     font: 700;
   }
@@ -110,16 +152,29 @@ const GradScore = styled.div`
     visibility: hidden;
   }
 `;
-const Publications = styled.div`
-  max-width: 100%;
+
+const Modal = styled.div`
+position: fixed;
+  width: 50%;
+  height: 50%;
+`;
+const ModalContent = styled.div`
+ background-color: white;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  padding: 20px;
+  border-radius: 5px;
+  border: 2px solid black;
+  margin: auto auto;
+
+
+ 
+`;
+const Buttons = styled.div`
+ background-color: red;
   display: flex;
-  flex-direction: column;
-  h3 {
-    color: red;
-  }
-  .hidden {
-    visibility: hidden;
+  .admit{
   }
 `;
-
 export default ProfileApplications;

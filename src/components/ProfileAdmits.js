@@ -3,8 +3,10 @@ import styled from "styled-components";
 import SchoolIcon from "@material-ui/icons/School";
 import DescriptionIcon from "@material-ui/icons/Description";
 function ProfileAdmits() {
+
   return (
     <Container>
+
       <Info className="div1">
         <Logo>
           <SchoolIcon />
@@ -124,4 +126,5 @@ const Publications = styled.div`
     visibility: hidden;
   }
 `;
+
 export default ProfileAdmits;
