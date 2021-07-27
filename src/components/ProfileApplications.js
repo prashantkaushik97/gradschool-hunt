@@ -126,7 +126,7 @@ function ProfileApplications() {
             </span>
             {object.status == "admitted" ? <div className='admitted'><span>Admitted</span></div> : <Buttons>
               <Admit onClick={(e) => { admitted(e, object.university, object.course) }}>Admitted</Admit>
-              <Reject>Rejected</Reject>
+              <Reject onClick={(e) => { rejected(e, object.university, object.course) }}>Rejected</Reject>
             </Buttons>}
 
 
