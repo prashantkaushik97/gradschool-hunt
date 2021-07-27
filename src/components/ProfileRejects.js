@@ -64,7 +64,7 @@ function ProfileRejects() {
             <span>
               {object.course}
             </span>
-            <div className='admitted'><span>Admitted</span></div>
+            <div className='admitted'><span>Rejected</span></div>
 
 
           </GradScore>

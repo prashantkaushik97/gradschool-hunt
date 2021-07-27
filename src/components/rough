@@ -13,33 +13,23 @@ function ProfileApplications() {
   const user = useSelector(selectUser);
   const [popup, setPopup] = useState(false)
   const [Click, setClick] = useState(true)
-  const [status, setStatus] = useState(null)
+  const [decisionDate, setDecisionDate] = useState(null)
   const handleClick = () => {
     setClick(!Click)
   };
   const handlePopup = () => {
-    setPopup(true)
+    setPopup(!popup)
   }
-  const admitted = (e, university, course) => {
+
+  const decision = (e, university, course, status) => {
 
     e.preventDefault()
     db.collection("users")
       .doc(user?.email).collection("Applications").doc(university).set({
         university: university,
         course: course,
-        status: "admitted"
-      }).then(() => {
-        fetchApplications()
-      })
-  }
-  const rejected = (e, university, course) => {
-
-    e.preventDefault()
-    db.collection("users")
-      .doc(user?.email).collection("Applications").doc(university).set({
-        university: university,
-        course: course,
-        status: "rejected"
+        status: status,
+        decisionDate: decisionDate
       }).then(() => {
         fetchApplications()
       })
@@ -53,6 +43,7 @@ function ProfileApplications() {
     { value: 'Canada', label: 'Canada' },
     { value: 'Australia', label: 'Australia' }
   ]
+
   const styles = {
     control: (base, state) => ({
       ...base,
@@ -130,10 +121,32 @@ function ProfileApplications() {
             </span>
             {object.status == "admitted" ? <div className='admitted'><span>Admitted</span></div> :
               <Buttons>
+                {popup ? <Modal>
+                  <ModalContent>
 
-                <Admit onClick={() => { setPopup(true) }}>Admitted</Admit>
+                    <span className="close" onClick={handlePopup}>
+                      &times;
+                    </span>
+                    <h5>{object.university}</h5>
 
-                <Reject onClick={(e) => { rejected(e, object.university, object.course) }}>Rejected</Reject>
+                    <span>
+                      {object.course}
+                    </span>
+                    <br />
+                    <Admit onClick={(e) => { decision(e, object.university, object.course, decisionDate, "admitted") }}>Admitted</Admit>
+                    <Reject onClick={(e) => { decision(e, object.university, object.course, decisionDate, "rejected") }}>Rejected</Reject>
+
+                    <input type="date" value="decisionDate" onChange={(e) => setDecisionDate((e.target.value))}></input>
+
+                  </ModalContent>
+                </Modal> :
+
+
+                  <Update onClick={() => { setPopup(true) }}>Add decision</Update>
+
+                }
+
+
               </Buttons>}
 
 
@@ -210,18 +223,24 @@ const ModalContent = styled.div`
 `;
 const Admit = styled.button`
   color: red;
+  margin: 5px 5px;
+    border-radius:2px;
+    border: none;
 `;
 const Reject = styled.button`
  color: green;
+ margin: 5px 5px;
+    border-radius:2px;
+    border: none;
+`;
+const Update = styled.button`
+ color: blue;
+
+    border-radius:2px;
+    border: none;
 `;
 const Buttons = styled.div`
   display: flex;
 
-  button{
-  margin: 5px 5px;
-    border-radius:2px;
-    border: none;
-    
-  }
 `;
 export default ProfileApplications;
