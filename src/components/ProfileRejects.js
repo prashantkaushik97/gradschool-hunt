@@ -1,57 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SchoolIcon from "@material-ui/icons/School";
-import DescriptionIcon from "@material-ui/icons/Description";
+
+import "./style.css"
+
+import { db, provider } from "../firebase";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+
 function ProfileRejects() {
+  const user = useSelector(selectUser);
+
+  const [Click, setClick] = useState(true)
+  const handleClick = () => {
+    setClick(!Click)
+  };
+  const admitted = (e, university, course) => {
+
+    e.preventDefault()
+    db.collection("users")
+      .doc(user?.email).collection("Applications").doc(university).set({
+        university: university,
+        course: course,
+        status: "admitted"
+      }).then(() => {
+        fetchApplications()
+      })
+  }
+
+  const [info, setInfo] = useState([]);
+
+
+
+
+  const fetchApplications = () => {
+    setInfo([]);
+    db.collection("users")
+      .doc(user?.email)
+      .collection("Applications").where("status", "==", "rejected")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((element) => {
+          var data = element.data();
+          setInfo((arr) => [...arr, data]);
+
+        });
+      });
+  };
+  useEffect(() => {
+    fetchApplications()
+  }, [])
   return (
-    <Container>
-      <Info className="div1">
-        <Logo>
-          <SchoolIcon />
-        </Logo>
-        <GradScore>
-          <h5>Undergrad</h5>
-          <span>
-            Computer Science and Engineering- Punjabi University, Patiala.
-          </span>
+    <div className="profileApplications">
 
-          <h3>73%</h3>
-        </GradScore>
-      </Info>
-      <Info className="div2">
-        <Logo>
-          <DescriptionIcon />
-        </Logo>
-        <Publications>
-          <h5>Publications</h5>
-          <span>Revamping Supermarkets with AI and RSSi</span>
 
-          <h3>73%</h3>
-        </Publications>
-      </Info>
-      <Info className="div3">
-        <Logo>
-          <DescriptionIcon />
-        </Logo>
-        <Publications>
-          <h5>Publications</h5>
-          <span>Revamping Supermarkets with AI and RSSi</span>
+      <Container>
+        {info.map((object, i) => <Info >
+          <Logo>
+            <SchoolIcon />
+          </Logo>
+          <GradScore>
+            <h5>{object.university}</h5>
+            <span>
+              {object.course}
+            </span>
+            <div className='admitted'><span>Admitted</span></div>
 
-          <h3>73%</h3>
-        </Publications>
-      </Info>
-      <Info className="div4">
-        <Logo>
-          <DescriptionIcon />
-        </Logo>
-        <Publications>
-          <h5>Publications</h5>
-          <span>Revamping Supermarkets with AI and RSSi</span>
 
-          <h3>73%</h3>
-        </Publications>
-      </Info>
-    </Container>
+          </GradScore>
+        </Info>)}
+
+
+      </Container>
+    </div>
+
   );
 }
 const Container = styled.div`
@@ -59,24 +81,11 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-
-  .div1 {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-  .div2 {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-  .div3 {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-  .div4 {
-    grid-area: 2 / 2 / 3 / 3;
-  }
-  .hidden {
-    visibility: hidden;
-  }
   .percentage {
     font: 700;
+  }
+  .admit{
+    color: red;
   }
 `;
 const Logo = styled.div`
@@ -91,7 +100,7 @@ const Logo = styled.div`
   }
 `;
 const Info = styled.div`
-  margin: auto auto auto auto;
+  margin-right: auto;
   padding: 10px 10px 10px 10px;
   max-width: 100%;
   display: flex;
@@ -101,17 +110,6 @@ const Info = styled.div`
 `;
 const GradScore = styled.div`
   max-width: 300px;
-  display: flex;
-  flex-direction: column;
-  h3 {
-    color: red;
-  }
-  .hidden {
-    visibility: hidden;
-  }
-`;
-const Publications = styled.div`
-  max-width: 100%;
   display: flex;
   flex-direction: column;
   h3 {

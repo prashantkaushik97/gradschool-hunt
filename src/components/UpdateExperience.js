@@ -7,6 +7,9 @@ import "./UpdateProfile.css";
 import Header from "./Header";
 import { Col, ListGroup } from "react-bootstrap";
 import moment from "moment";
+// value="19-Oct-2018"
+// in input tag
+// state format does not match with yyyy-MM-dd"
 function UpdateExperience() {
     const user = useSelector(selectUser);
     const history = useHistory();
@@ -86,7 +89,10 @@ function UpdateExperience() {
         }
     };
     return (
+
+
         <div>
+            <Header />
             <div class="updateProfile__form">
                 <form>
                     <div class="row">

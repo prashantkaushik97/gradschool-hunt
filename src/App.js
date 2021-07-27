@@ -45,10 +45,10 @@ function App() {
           <UpdateExperience />
         </Route>
         <Route exact path="/signup">
-          {user ? <Home /> : <Signup />}
+          {user ? <Redirect to='/' /> : <Signup />}
         </Route>
         <Route exact path="/signin">
-          {user ? <Home /> : <Login />}
+          {user ? <Redirect to='/' /> : <Login />}
         </Route>
         <Route exact path="/updateProfile">
           <Header />

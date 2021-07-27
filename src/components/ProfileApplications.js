@@ -16,12 +16,34 @@ function ProfileApplications() {
   const handleClick = () => {
     setClick(!Click)
   };
+  const admitted = (e, university, course) => {
+
+    e.preventDefault()
+    db.collection("users")
+      .doc(user?.email).collection("Applications").doc(university).set({
+        university: university,
+        course: course,
+        status: "admitted"
+      }).then(() => {
+        fetchApplications()
+      })
+  }
+  const rejected = (e, university, course) => {
+
+    e.preventDefault()
+    db.collection("users")
+      .doc(user?.email).collection("Applications").doc(university).set({
+        university: university,
+        course: course,
+        status: "rejected"
+      }).then(() => {
+        fetchApplications()
+      })
+  }
   const [country, setCountry] = useState("USA");
-  const [university, setUniversity] = useState(null);
   const [course, setCourse] = useState(null)
   const [resetUni, setResetUni] = useState(false);
   const [info, setInfo] = useState([]);
-
   const options = [
     { value: 'USA', label: 'USA' },
     { value: 'Canada', label: 'Canada' },
@@ -41,24 +63,28 @@ function ProfileApplications() {
   const addApplication = (event) => {
     event.preventDefault()
     let uni = (document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent
-    console.log(course)
     db.collection("users")
       .doc(user?.email).collection("Applications").doc(uni).set({
         university: uni,
-        course: course
+        course: course,
+        status: "applied"
+      }).then(() => {
+        fetchApplications()
       })
+    //    setAdded(true)
   }
 
-  const fetchApplications = async () => {
+  const fetchApplications = () => {
     setInfo([]);
     db.collection("users")
       .doc(user?.email)
-      .collection("Applications")
+      .collection("Applications").where("status", "==", "applied")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {
           var data = element.data();
           setInfo((arr) => [...arr, data]);
+
         });
       });
   };
@@ -98,11 +124,12 @@ function ProfileApplications() {
             <span>
               {object.course}
             </span>
-            <Buttons>
+            {object.status == "admitted" ? <div className='admitted'><span>Admitted</span></div> : <Buttons>
+              <Admit onClick={(e) => { admitted(e, object.university, object.course) }}>Admitted</Admit>
+              <Reject>Rejected</Reject>
+            </Buttons>}
 
-            </Buttons>
-            <div classname="admit">Admitted</div>
-            <button>Rejected</button>
+
           </GradScore>
         </Info>)}
 
@@ -120,6 +147,9 @@ const Container = styled.div`
   .percentage {
     font: 700;
   }
+  .admit{
+    color: red;
+  }
 `;
 const Logo = styled.div`
   margin: auto auto auto auto;
@@ -133,7 +163,7 @@ const Logo = styled.div`
   }
 `;
 const Info = styled.div`
-  margin: auto auto auto auto;
+  margin-right: auto;
   padding: 10px 10px 10px 10px;
   max-width: 100%;
   display: flex;
@@ -171,10 +201,20 @@ const ModalContent = styled.div`
 
  
 `;
+const Admit = styled.button`
+  color: red;
+`;
+const Reject = styled.button`
+ color: green;
+`;
 const Buttons = styled.div`
- background-color: red;
   display: flex;
-  .admit{
+
+  button{
+  margin: 5px 5px;
+    border-radius:2px;
+    border: none;
+    
   }
 `;
 export default ProfileApplications;
