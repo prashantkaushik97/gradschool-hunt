@@ -11,37 +11,31 @@ import { selectUser } from "../features/userSlice";
 
 function ProfileApplications() {
   const user = useSelector(selectUser);
-  const [popup, setPopup] = useState(false)
   const [Click, setClick] = useState(true)
-  const [status, setStatus] = useState(null)
   const handleClick = () => {
     setClick(!Click)
   };
-  const handlePopup = () => {
-    setPopup(true)
-  }
-  const admitted = (e, university, course) => {
+
+
+  const decision = (e, university, course, status) => {
 
     e.preventDefault()
     db.collection("users")
-      .doc(user?.email).collection("Applications").doc(university).set({
-        university: university,
-        course: course,
-        status: "admitted"
+      .doc(user?.email).collection("Applications").where("university", "==", university).get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          db.collection("users")
+            .doc(user?.email).collection("Applications").doc(doc.id).update({
+              status: status
+            })
+        });
       }).then(() => {
         fetchApplications()
       })
-  }
-  const rejected = (e, university, course) => {
-
-    e.preventDefault()
-    db.collection("users")
-      .doc(user?.email).collection("Applications").doc(university).set({
-        university: university,
+    db.collection("universities")
+      .doc(university).collection("decisions").add({
+        user: user?.email,
         course: course,
-        status: "rejected"
-      }).then(() => {
-        fetchApplications()
+        status: status
       })
   }
   const [country, setCountry] = useState("USA");
@@ -68,7 +62,7 @@ function ProfileApplications() {
     event.preventDefault()
     let uni = (document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent
     db.collection("users")
-      .doc(user?.email).collection("Applications").doc(uni).set({
+      .doc(user?.email).collection("Applications").add({
         university: uni,
         course: course,
         status: "applied"
@@ -131,9 +125,9 @@ function ProfileApplications() {
             {object.status == "admitted" ? <div className='admitted'><span>Admitted</span></div> :
               <Buttons>
 
-                <Admit onClick={() => { setPopup(true) }}>Admitted</Admit>
+                <Admit onClick={(e) => { decision(e, object.university, object.course, "admitted") }}>Admitted</Admit>
 
-                <Reject onClick={(e) => { rejected(e, object.university, object.course) }}>Rejected</Reject>
+                <Reject onClick={(e) => { decision(e, object.university, object.course, "rejected") }}>Rejected</Reject>
               </Buttons>}
 
 
