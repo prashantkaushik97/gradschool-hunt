@@ -1,11 +1,11 @@
 import firebase from "firebase";
 const firebaseConfig = {
-  apiKey: "AIzaSyD5wLnt2ecvt-KFKvQbm5uTgJ3SpIXSkek",
-  authDomain: "gradschool-hunt.firebaseapp.com",
-  projectId: "gradschool-hunt",
-  storageBucket: "gradschool-hunt.appspot.com",
-  messagingSenderId: "460381949311",
-  appId: "1:460381949311:web:f8466cd0a495b72ef39e4a",
+  apiKey: "AIzaSyAB69COaQ1s6Iq5giWCfiPeDnfJaoMC-vM",
+  authDomain: "grad-school-6f0a8.firebaseapp.com",
+  projectId: "grad-school-6f0a8",
+  storageBucket: "grad-school-6f0a8.appspot.com",
+  messagingSenderId: "453594020668",
+  appId: "1:453594020668:web:edcbf4ab67e241f2f97c39",
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
