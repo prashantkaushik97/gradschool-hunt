@@ -4,29 +4,22 @@ import Layout from "../components/Layout";
 import Select from "react-select";
 import UniversitySearch from "./UniversitySearch";
 import { useEffect } from "react";
-import axios from "axios";
+
 import "./Home.css"
 import SearchIcon from '@material-ui/icons/Search';
 import { db, provider } from "../firebase";
 import { Link, useHistory } from "react-router-dom";
-import { university } from "../features/universitySlice";
-import { useDispatch } from "react-redux";
 import Decisions from "./Decisions";
 
 function SearchDecisions() {
     const [country, setCountry] = useState(null);
     const [resetUni, setResetUni] = useState(false);
-    const dispatch = useDispatch();
     const history = useHistory();
-    const [decision, setDecision] = useState(null)
+    const [uni, setUni] = useState(null)
     const search = (e) => {
         e.preventDefault();
-
-        dispatch(
-            university({
-                university: (document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent
-            })
-        );
+        console.log((document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent)
+        setUni((document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent)
 
 
     };
@@ -49,11 +42,6 @@ function SearchDecisions() {
         { value: 'Canada', label: 'Canada' },
         { value: 'Australia', label: 'Australia' }
     ]
-    const decisions = [
-        { value: 'All', label: 'All' },
-        { value: 'Admits', label: 'admitted' },
-        { value: 'Rejects', label: 'rejected' }
-    ]
     return (
         <Layout>
             <div className="home">
@@ -73,12 +61,11 @@ function SearchDecisions() {
 
 
 
-
                     </div>
 
                 </div>
             </div>
-            <Decisions></Decisions>
+            {uni ? <Decisions uni={uni} /> : <></>}
         </Layout >
     );
 }

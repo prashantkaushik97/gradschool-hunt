@@ -31,7 +31,7 @@ function Header() {
                 <NavDropdown.Divider />
               </NavDropdown>
               <li className="nav-item">
-                <NavLink to="/signin" className="nav-link">
+                <NavLink to="/decisions" className="nav-link">
                   Decisions
                 </NavLink>
               </li>

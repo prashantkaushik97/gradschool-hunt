@@ -12,5 +12,5 @@ export const universitySlice = createSlice({
     },
 });
 export const { university } = universitySlice.actions;
-export const selectUniversity = (state) => state.university.university;
+export const selectUniversity = (state) => state.university;
 export default universitySlice.reducer;

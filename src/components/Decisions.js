@@ -10,75 +10,75 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import { selectUniversity } from "../features/universitySlice";
 
-function Decisions() {
-    const user = useSelector(selectUser);
-    const university = useSelector(selectUniversity)
-    const [decision, setDecision] = useState("applied")
+function Decisions({ uni }) {
+  const user = useSelector(selectUser);
+  const university = useSelector(selectUniversity)
+  const [decision, setDecision] = useState("admitted")
 
-    const decisions = [
-        { value: 'All', label: 'All' },
-        { value: 'Admits', label: 'admitted' },
-        { value: 'Rejects', label: 'rejected' }
-    ]
+  const decisions = [
+    { value: 'All', label: 'All' },
+    { value: 'Admits', label: 'admitted' },
+    { value: 'Rejects', label: 'rejected' }
+  ]
 
-    const [info, setInfo] = useState([]);
+  const [info, setInfo] = useState([]);
 
-    const styles = {
-        control: (base, state) => ({
-            ...base,
-            border: state.isFocused ? 0 : 0,
-            // This line disable the blue border
-            boxShadow: state.isFocused ? 0 : 0,
-            "&:hover": {
-                border: state.isFocused ? 0 : 0
-            }
-        })
-    };
+  const styles = {
+    control: (base, state) => ({
+      ...base,
+      border: state.isFocused ? 0 : 0,
+      boxShadow: state.isFocused ? 0 : 0,
+      "&:hover": {
+        border: state.isFocused ? 0 : 0
+      }
+    })
+  };
 
-    const fetchApplications = () => {
-        setInfo([]);
-        db.collection("universities")
-            .doc(university?.university)
-            .collection("decisions").where("status", "==", decision)
-            .get()
-            .then((querySnapshot) => {
-                querySnapshot.forEach((element) => {
-                    var data = element.data();
-                    setInfo((arr) => [...arr, data]);
+  const fetchApplications = () => {
+    setInfo([]);
+    console.log(uni)
 
-                });
-            });
-    };
-    useEffect(() => {
-        fetchApplications()
-    }, [university, decision])
-    return (
-        <div className="profileApplications">
-            <Select placeholder={<div>Status</div>} options={decisions} onChange={(value) => {
-                setDecision(value.label)
-            }} styles={styles} />
+    db.collection("universities")
+      .doc(uni)
+      .collection("decisions").where("status", "==", decision)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((element) => {
+          var data = element.data();
+          setInfo((arr) => [...arr, data]);
+        });
+      });
+  };
+  useEffect(() => {
+    fetchApplications()
+  }, [uni, decision])
+  return (
+    <div className="profileApplications">
+      <Select placeholder={<div>Status</div>} options={decisions} onChange={(value) => {
+        setDecision(value.label)
+      }} styles={styles} />
 
-            <Container>
-                {info.map((object, i) => <Info >
-                    <Logo>
-                        <SchoolIcon />
-                    </Logo>
-                    <GradScore>
-                        <h5>{object.university}</h5>
-                        <span>
-                            {object.course}
-                        </span>
-                        <div className='admitted'><span>{object.status}</span></div>
-
-
-                    </GradScore>
-                </Info>)}
+      <Container>
+        {info.map((object, i) => <Info >
+          <Logo>
+            <SchoolIcon />
+          </Logo>
+          <GradScore>
+            <h5>{object.university}</h5>
+            <span>
+              {object.course}
+            </span>
+            <div className='admitted'><span>{object.status}</span></div>
 
 
-            </Container>
-        </div>
+          </GradScore>
+        </Info>)}
 
-    );
+
+      </Container>
+    </div>
+
+  );
 }
 const Container = styled.div`
   margin-top: 10px;

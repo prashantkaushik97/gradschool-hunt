@@ -15,6 +15,8 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Header from "./components/Header";
 import UpdateExperience from "./components/UpdateExperience";
+import SearchDecisions from "./components/SearchDecisions";
+import Decisions from "./components/Decisions";
 
 function App() {
   const user = useSelector(selectUser);
@@ -40,6 +42,10 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/decisions">
+          <SearchDecisions />
+
         </Route>
         <Route exact path="/updateexperience">
           <UpdateExperience />
