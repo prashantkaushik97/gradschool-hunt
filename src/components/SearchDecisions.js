@@ -18,10 +18,7 @@ function SearchDecisions() {
     const [uni, setUni] = useState(null)
     const search = (e) => {
         e.preventDefault();
-        console.log((document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent)
         setUni((document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent)
-
-
     };
 
 

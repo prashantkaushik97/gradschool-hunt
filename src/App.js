@@ -10,13 +10,14 @@ import {
 } from "react-router-dom";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
-import UpdateProfile from "./components/UpdateProfile";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Header from "./components/Header";
 import UpdateExperience from "./components/UpdateExperience";
 import SearchDecisions from "./components/SearchDecisions";
 import Decisions from "./components/Decisions";
+import UpdateAcademics from "./components/UpdateAcademics";
+import UpdateProfile from "./components/UpdateProfile";
 
 function App() {
   const user = useSelector(selectUser);
@@ -47,6 +48,9 @@ function App() {
           <SearchDecisions />
 
         </Route>
+        <Route exact path="/updateprofile">
+          <UpdateProfile />
+        </Route>
         <Route exact path="/updateexperience">
           <UpdateExperience />
         </Route>
@@ -56,10 +60,10 @@ function App() {
         <Route exact path="/signin">
           {user ? <Redirect to='/' /> : <Login />}
         </Route>
-        <Route exact path="/updateProfile">
+        <Route exact path="/updateAcademics">
           <Header />
 
-          <UpdateProfile />
+          <UpdateAcademics />
         </Route>
         <Route exact path="/profile">
           <Header />

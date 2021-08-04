@@ -1,206 +1,76 @@
 import React, { useState } from "react";
-import { logout, selectUser } from "../features/userSlice";
-import { db, provider } from "../firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { selectUser } from "../features/userSlice";
+import { db, } from "../firebase";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "./UpdateProfile.css";
 import Header from "./Header";
+
 function UpdateProfile() {
-  const user = useSelector(selectUser);
-  const history = useHistory();
-  const [gradScore, setGradScore] = useState("");
-  const [greQ, setGreQ] = useState("");
-  const [greV, setGreV] = useState("");
-  const [greAWA, setGreAWA] = useState("");
-  const [listeingI, setListeningI] = useState("");
-  const [readingI, setReadingI] = useState("");
-  const [speakingI, setSpeakingI] = useState("");
-  const [writingI, setWritingI] = useState("");
-  const [listeningT, setListeningT] = useState("");
-  const [readingT, setReadingT] = useState("");
-  const [speakingT, setSpeakingT] = useState("");
-  const [writingT, setWritingT] = useState("");
-  const addUser = (event) => {
-    event.preventDefault();
-    db.collection("users")
-      .doc(user?.email)
-      .collection("academics")
-      .doc("GRE")
+    const user = useSelector(selectUser);
+    const history = useHistory();
+    const [fName, setfName] = useState()
+    const [lName, setlName] = useState()
+    const [country, setcountry] = useState()
+    const addUser = (event) => {
+        event.preventDefault();
 
-      .set({
-        greQ: greQ,
-        greV: greV,
-        greAWA: greAWA,
-      })
-      .catch(function (error) {
-        console.error("Error adding Product: ", error);
-      });
-    db.collection("users")
-      .doc(user?.email)
-      .collection("academics")
-      .doc("IELTS")
 
-      .set({
-        listeingI: listeingI,
-        readingI: readingI,
-        speakingI: speakingI,
-        writingI: writingI,
-      })
-      .catch(function (error) {
-        console.error("Error adding Product: ", error);
-      });
-    db.collection("users")
-      .doc(user?.email)
-      .collection("academics")
-      .doc("TOEFL")
 
-      .set({
-        listeningT: listeningT,
-        readingT: readingT,
-        speakingT: speakingT,
-        writingT: writingT,
-      })
-      .catch(function (error) {
-        console.error("Error adding Product: ", error);
-      });
-    db.collection("users")
-      .doc(user?.email)
-      .collection("academics")
-      .doc("grad")
+        db.collection("users")
+            .doc(user?.email)
+            .collection("profile")
 
-      .set({
-        gradScore: gradScore,
-      })
-      .catch(function (error) {
-        console.error("Error adding Product: ", error);
-      });
-    history.push("/updateexperience");
-  };
-  return (
-    <div>
-      <div className="updateProfile__form">
-        <form>
-          <div class="row">
-            <h4>Undergrad Percentage</h4>
-            <div class="input-group">
-              <div class="col-third">
-                <input
-                  type="text"
-                  placeholder="%"
-                  value={gradScore}
-                  onChange={(e) => setGradScore(e.target.value)}
-                />
-              </div>
+            .add({
+                fName: fName,
+                lName: lName,
+                country: country
+            })
+            .catch(function (error) {
+                console.error("Error adding Pprofile ", error);
+            });
+
+        history.push("/updateAcademics")
+    };
+    return (
+
+
+        <div>
+            <Header />
+            <div class="updateProfile__form">
+                <form>
+                    <div class="row">
+                        <h4>Profile</h4>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="input-group input-group-icon"><input type="text" placeholder="First Name" onChange={(e) => setfName(e.target.value)} />
+                            <div class="input-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase" viewBox="0 0 16 16">
+                                <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z" />
+                            </svg></div>
+                        </div>
+                        <div class="input-group input-group-icon"><input onChange={(e) => setlName(e.target.value)} type="text" placeholder="Last Name" />
+                            <div class="input-icon"><i class="fa fa-user"></i></div>
+                        </div>
+                        <div class="input-group input-group-icon"><input onChange={(e) => setcountry(e.target.value)} type="text" placeholder="Country" />
+                            <div class="input-icon"><i class="fa fa-user"></i></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4>Terms and Conditions</h4>
+                        <div class="input-group"><input id="terms" type="checkbox" /><label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label></div>
+                    </div>
+
+                    <button type="submit" onClick={addUser}>
+                        Continue
+                    </button>
+
+
+                </form>
             </div>
-            <h4>GRE Scores</h4>
-            <div class="input-group">
-              <div class="col-third">
-                <input
-                  type="text"
-                  placeholder="Quants"
-                  value={greQ}
-                  onChange={(e) => setGreQ(e.target.value)}
-                />
-              </div>
-              <div class="col-third">
-                <input
-                  type="text"
-                  placeholder="Verbal"
-                  value={greV}
-                  onChange={(e) => setGreV(e.target.value)}
-                />
-              </div>
-              <div class="col-third">
-                <input
-                  type="text"
-                  placeholder="AWA"
-                  value={greAWA}
-                  onChange={(e) => setGreAWA(e.target.value)}
-                />
-              </div>
-            </div>
-            <h4>IELTS Scores</h4>
-            <div class="input-group">
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Listening"
-                  value={listeingI}
-                  onChange={(e) => setListeningI(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Reading"
-                  value={readingI}
-                  onChange={(e) => setReadingI(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Writing"
-                  value={writingI}
-                  onChange={(e) => setWritingI(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Speaking"
-                  value={speakingI}
-                  onChange={(e) => setSpeakingI(e.target.value)}
-                />
-              </div>
-            </div>
-            <h4>TOEFL Scores</h4>
-
-            <div class="input-group">
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Listening"
-                  value={listeningT}
-                  onChange={(e) => setListeningT(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Reading"
-                  value={readingT}
-                  onChange={(e) => setReadingT(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Writing"
-                  value={writingT}
-                  onChange={(e) => setWritingT(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Speaking"
-                  value={speakingT}
-                  onChange={(e) => setSpeakingT(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
-
-
-          <button type="submit" onClick={addUser}>
-            Add details
-          </button>
-
-        </form>
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
-
-export default UpdateProfile;
+export default UpdateProfile

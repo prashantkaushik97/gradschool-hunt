@@ -14,7 +14,8 @@ function Decisions({ uni }) {
   const user = useSelector(selectUser);
   const university = useSelector(selectUniversity)
   const [decision, setDecision] = useState("admitted")
-
+  const [userProfile, setUserProfile] = useState([])
+  const [userAcademics, setuserAcademics] = useState([])
   const decisions = [
     { value: 'All', label: 'All' },
     { value: 'Admits', label: 'admitted' },
@@ -36,7 +37,6 @@ function Decisions({ uni }) {
 
   const fetchApplications = () => {
     setInfo([]);
-    console.log(uni)
 
     db.collection("universities")
       .doc(uni)
@@ -44,8 +44,23 @@ function Decisions({ uni }) {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {
-          var data = element.data();
+          let data = element.data();
           setInfo((arr) => [...arr, data]);
+          console.log(data.user)
+          db.collection("users").doc(data.user).collection("profile").get().then((querySnapshot) => {
+            querySnapshot.forEach((element) => {
+              let user = element.data();
+              console.log(user)
+              setUserProfile((arr) => [...arr, user]);
+            });
+          });
+          db.collection("users").doc(data.user).collection("academics").get().then((querySnapshot) => {
+            querySnapshot.forEach((element) => {
+              let user = element.data();
+              console.log(user)
+              setuserAcademics((arr) => [...arr, user]);
+            });
+          });
         });
       });
   };
@@ -64,6 +79,7 @@ function Decisions({ uni }) {
             <SchoolIcon />
           </Logo>
           <GradScore>
+            {userProfile[i]?.fName}
             <h5>{object.university}</h5>
             <span>
               {object.course}
