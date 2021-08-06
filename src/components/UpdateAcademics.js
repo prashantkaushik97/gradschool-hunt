@@ -24,52 +24,23 @@ function UpdateAcademics() {
     event.preventDefault();
     db.collection("users")
       .doc(user?.email)
-      .collection("academics")
-      .doc("GRE")
-
       .set({
-        greQ: greQ,
-        greV: greV,
-        greAWA: greAWA,
-      })
-      .catch(function (error) {
-        console.error("Error adding Product: ", error);
-      });
-    db.collection("users")
-      .doc(user?.email)
-      .collection("academics")
-      .doc("IELTS")
-
-      .set({
-        listeingI: listeingI,
-        readingI: readingI,
-        speakingI: speakingI,
-        writingI: writingI,
-      })
-      .catch(function (error) {
-        console.error("Error adding Product: ", error);
-      });
-    db.collection("users")
-      .doc(user?.email)
-      .collection("academics")
-      .doc("TOEFL")
-
-      .set({
-        listeningT: listeningT,
-        readingT: readingT,
-        speakingT: speakingT,
-        writingT: writingT,
-      })
-      .catch(function (error) {
-        console.error("Error adding Product: ", error);
-      });
-    db.collection("users")
-      .doc(user?.email)
-      .collection("academics")
-      .doc("grad")
-
-      .set({
-        gradScore: gradScore,
+        academics: {
+          gre: {
+            greQ: greQ,
+            greV: greV,
+            greAWA: greAWA,
+          },
+          ielts: {
+            listeingI: listeingI,
+            readingI: readingI,
+            speakingI: speakingI,
+            writingI: writingI,
+          },
+          undergrad: {
+            gradScore: gradScore,
+          }
+        }
       })
       .catch(function (error) {
         console.error("Error adding Product: ", error);

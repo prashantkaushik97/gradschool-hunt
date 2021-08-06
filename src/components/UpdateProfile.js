@@ -19,12 +19,12 @@ function UpdateProfile() {
 
         db.collection("users")
             .doc(user?.email)
-            .collection("profile")
-
-            .add({
-                fName: fName,
-                lName: lName,
-                country: country
+            .update({
+                profile: {
+                    fName: fName,
+                    lName: lName,
+                    country: country
+                }
             })
             .catch(function (error) {
                 console.error("Error adding Pprofile ", error);

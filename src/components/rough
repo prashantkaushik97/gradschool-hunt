@@ -1,113 +1,77 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SchoolIcon from "@material-ui/icons/School";
-import DescriptionIcon from "@material-ui/icons/Description";
-import "./style.css"
-import UniversitySearch from "./UniversitySearch";
 import Select from "react-select";
+
+import "./style.css"
+
 import { db, provider } from "../firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+import { selectUniversity } from "../features/universitySlice";
 
-function ProfileApplications() {
+function Decisions({ uni }) {
   const user = useSelector(selectUser);
-  const [popup, setPopup] = useState(false)
-  const [Click, setClick] = useState(true)
-  const [decisionDate, setDecisionDate] = useState(null)
-  const handleClick = () => {
-    setClick(!Click)
-  };
-  const handlePopup = () => {
-    setPopup(!popup)
-  }
-
-  const decision = (e, university, course, status) => {
-
-    e.preventDefault()
-    db.collection("users")
-      .doc(user?.email).collection("Applications").doc(university).set({
-        university: university,
-        course: course,
-        status: status,
-        decisionDate: decisionDate
-      }).then(() => {
-        fetchApplications()
-      })
-  }
-  const [country, setCountry] = useState("USA");
-  const [course, setCourse] = useState(null)
-  const [resetUni, setResetUni] = useState(false);
-  const [info, setInfo] = useState([]);
-  const options = [
-    { value: 'USA', label: 'USA' },
-    { value: 'Canada', label: 'Canada' },
-    { value: 'Australia', label: 'Australia' }
+  const university = useSelector(selectUniversity)
+  const [decision, setDecision] = useState("admitted")
+  const [userProfile, setUserProfile] = useState([])
+  const [userAcademics, setuserAcademics] = useState([])
+  const decisions = [
+    { value: 'All', label: 'All' },
+    { value: 'Admits', label: 'admitted' },
+    { value: 'Rejects', label: 'rejected' }
   ]
+
+  const [info, setInfo] = useState([]);
 
   const styles = {
     control: (base, state) => ({
       ...base,
       border: state.isFocused ? 0 : 0,
-      // This line disable the blue border
       boxShadow: state.isFocused ? 0 : 0,
       "&:hover": {
         border: state.isFocused ? 0 : 0
       }
     })
   };
-  const addApplication = (event) => {
-    event.preventDefault()
-    let uni = (document.querySelectorAll(".css-1uccc91-singleValue")[1])?.textContent
-    db.collection("users")
-      .doc(user?.email).collection("Applications").doc(uni).set({
-        university: uni,
-        course: course,
-        status: "applied"
-      }).then(() => {
-        fetchApplications()
-      })
-    //    setAdded(true)
-  }
 
   const fetchApplications = () => {
     setInfo([]);
-    db.collection("users")
-      .doc(user?.email)
-      .collection("Applications").where("status", "==", "applied")
+
+    db.collection("universities")
+      .doc(uni)
+      .collection("decisions").where("status", "==", decision)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {
-          var data = element.data();
+          let data = element.data();
           setInfo((arr) => [...arr, data]);
-
+          console.log(data.user)
+          db.collection("users").doc(data.user).collection("profile").get().then((querySnapshot) => {
+            querySnapshot.forEach((element) => {
+              let user = element.data();
+              console.log(user)
+              setUserProfile((arr) => [...arr, user]);
+            });
+          });
+          db.collection("users").doc(data.user).collection("academics").get().then((querySnapshot) => {
+            querySnapshot.forEach((element) => {
+              let user = element.data();
+              console.log(user)
+              setuserAcademics((arr) => [...arr, user]);
+            });
+          });
         });
       });
   };
   useEffect(() => {
     fetchApplications()
-  }, [])
+  }, [uni, decision])
   return (
     <div className="profileApplications">
-      {Click ? <button className="profileApplications_addApplication" onClick={handleClick}>Add Application</button> : <Modal>
-        <ModalContent>
-
-          <span className="close" onClick={handleClick}>
-            &times;
-          </span>
-          <form>
-            <h3>Add application</h3>
-            <Select placeholder={<div>Country</div>} options={options} onChange={(value) => {
-              setCountry(value.label)
-              setResetUni(true)
-            }} styles={styles} />
-
-            <UniversitySearch reset={resetUni} label="Choose a university" country={country} />
-            <input type="text" placeholder="Course" onChange={(e) => { setCourse(e.target.value) }}></input>
-            <input type="submit" onClick={(e) => { addApplication(e); handleClick() }} />
-          </form>
-
-        </ModalContent>
-      </Modal>}
+      <Select placeholder={<div>Status</div>} options={decisions} onChange={(value) => {
+        setDecision(value.label)
+      }} styles={styles} />
 
       <Container>
         {info.map((object, i) => <Info >
@@ -115,39 +79,13 @@ function ProfileApplications() {
             <SchoolIcon />
           </Logo>
           <GradScore>
+
+            {userProfile[i]?.fName}
             <h5>{object.university}</h5>
             <span>
               {object.course}
             </span>
-            {object.status == "admitted" ? <div className='admitted'><span>Admitted</span></div> :
-              <Buttons>
-                {popup ? <Modal>
-                  <ModalContent>
-
-                    <span className="close" onClick={handlePopup}>
-                      &times;
-                    </span>
-                    <h5>{object.university}</h5>
-
-                    <span>
-                      {object.course}
-                    </span>
-                    <br />
-                    <Admit onClick={(e) => { decision(e, object.university, object.course, decisionDate, "admitted") }}>Admitted</Admit>
-                    <Reject onClick={(e) => { decision(e, object.university, object.course, decisionDate, "rejected") }}>Rejected</Reject>
-
-                    <input type="date" value="decisionDate" onChange={(e) => setDecisionDate((e.target.value))}></input>
-
-                  </ModalContent>
-                </Modal> :
-
-
-                  <Update onClick={() => { setPopup(true) }}>Add decision</Update>
-
-                }
-
-
-              </Buttons>}
+            <div className='admitted'><span>{object.status}</span></div>
 
 
           </GradScore>
@@ -203,44 +141,5 @@ const GradScore = styled.div`
   }
 `;
 
-const Modal = styled.div`
-position: fixed;
-  width: 50%;
-  height: 50%;
-`;
-const ModalContent = styled.div`
- background-color: white;
-  top: 20%;
-  left: 30%;
-  width: 40%;
-  padding: 20px;
-  border-radius: 5px;
-  border: 2px solid black;
-  margin: auto auto;
 
-
- 
-`;
-const Admit = styled.button`
-  color: red;
-  margin: 5px 5px;
-    border-radius:2px;
-    border: none;
-`;
-const Reject = styled.button`
- color: green;
- margin: 5px 5px;
-    border-radius:2px;
-    border: none;
-`;
-const Update = styled.button`
- color: blue;
-
-    border-radius:2px;
-    border: none;
-`;
-const Buttons = styled.div`
-  display: flex;
-
-`;
-export default ProfileApplications;
+export default Decisions

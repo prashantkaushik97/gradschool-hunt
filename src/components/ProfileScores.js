@@ -28,17 +28,27 @@ function ProfileScores() {
     setInfo([]);
     db.collection("users")
       .doc(user?.email)
-      .collection("academics")
-      .get()
-      .then((querySnapshot) => {
-        // Loop through the data and store
-        // it in array to display
-        querySnapshot.forEach((element) => {
-          var data = element.data();
+      .get().then((doc) => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          setInfo(doc.data())
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+        //   console.log(querySnapshot)
+        //   querySnapshot.forEach((element) => {
+        // let user = {}
+        //console.log(element.data())
+        // user.email = data.user
+        // let obj = element.data()
+        // let arra = []
+        // arra.push(element.data())
 
-          setInfo((arr) => [...arr, data]);
-        });
-      });
+        // setuserObject((arr) => [...arr, arra])
+
+        // });
+      })
   };
   useEffect(() => {
     fetchScores();
@@ -52,7 +62,7 @@ function ProfileScores() {
             <SchoolIcon />
           </Logo>
           <h5>IELTS</h5>
-          <h6>Listening: {info[1]?.listeingI}</h6>
+          <h6>Listening: {info.academics?.ielts.listeingI}</h6>
           <h6>Reading: {info[1]?.readingI}</h6>
           <h6>Writing: {info[1]?.writingI}</h6>
           <h6>Speaking: {info[1]?.speakingI}</h6>
