@@ -92,7 +92,7 @@ function Decisions({ uni }) {
             </div>
           </div>
           {/* END row */}
-          {info.map((object, i) =>
+          {userObject.map((object, i) =>
             <div className="col-lg-6 col-sm-6">
               <div className="probootstrap-teacher text-center probootstrap ">
 
