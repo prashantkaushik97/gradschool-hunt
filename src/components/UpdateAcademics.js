@@ -24,7 +24,7 @@ function UpdateAcademics() {
     event.preventDefault();
     db.collection("users")
       .doc(user?.email)
-      .set({
+      .update({
         academics: {
           gre: {
             greQ: greQ,

@@ -93,7 +93,7 @@ function Decisions({ uni }) {
           </div>
           {/* END row */}
           {info.map((object, i) =>
-            <div className="col-lg-5 col-sm-6">
+            <div className="col-lg-6 col-sm-6">
               <div className="probootstrap-teacher text-center probootstrap ">
 
                 <div class="member-card pt-2 pb-2">
@@ -112,25 +112,25 @@ function Decisions({ uni }) {
                     <div class="row">
                       <div class="col-3">
                         <div class="mt-3">
-                          <h4>2563</h4>
-                          <p class="mb-0 text-muted">{ }</p>
+                          <h4>GRE</h4>
+                          <p class="mb-0 text-muted">{parseInt(userObject[i]?.academics?.gre?.greV) + parseInt(userObject[i]?.academics?.gre?.greQ)}</p>
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="mt-3">
-                          <h4>6952</h4>
+                          <h4>IELTS</h4>
                           <p class="mb-0 text-muted">Income amounts</p>
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="mt-3">
-                          <h4>6952</h4>
+                          <h4>UG</h4>
                           <p class="mb-0 text-muted">Income amounts</p>
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="mt-3">
-                          <h4>1125</h4>
+                          <h4>Publications</h4>
                           <p class="mb-0 text-muted">Total Transactions</p>
                         </div>
                       </div>
