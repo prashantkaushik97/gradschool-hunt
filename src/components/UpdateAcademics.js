@@ -12,14 +12,11 @@ function UpdateAcademics() {
   const [greQ, setGreQ] = useState("");
   const [greV, setGreV] = useState("");
   const [greAWA, setGreAWA] = useState("");
-  const [listeingI, setListeningI] = useState("");
-  const [readingI, setReadingI] = useState("");
-  const [speakingI, setSpeakingI] = useState("");
-  const [writingI, setWritingI] = useState("");
-  const [listeningT, setListeningT] = useState("");
-  const [readingT, setReadingT] = useState("");
-  const [speakingT, setSpeakingT] = useState("");
-  const [writingT, setWritingT] = useState("");
+  const [listeing, setListening] = useState("");
+  const [reading, setReading] = useState("");
+  const [speaking, setSpeaking] = useState("");
+  const [writing, setWriting] = useState("");
+  const [exam, setexam] = useState("IELTS")
   const addUser = (event) => {
     event.preventDefault();
     db.collection("users")
@@ -31,11 +28,12 @@ function UpdateAcademics() {
             greV: greV,
             greAWA: greAWA,
           },
-          ielts: {
-            listeingI: listeingI,
-            readingI: readingI,
-            speakingI: speakingI,
-            writingI: writingI,
+          english: {
+            exam: exam,
+            listeing: listeing,
+            reading: reading,
+            speaking: speaking,
+            writing: writing,
           },
           undergrad: {
             gradScore: gradScore,
@@ -90,86 +88,58 @@ function UpdateAcademics() {
                 />
               </div>
             </div>
-            <h4>IELTS Scores</h4>
-            <div class="input-group">
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Listening"
-                  value={listeingI}
-                  onChange={(e) => setListeningI(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Reading"
-                  value={readingI}
-                  onChange={(e) => setReadingI(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Writing"
-                  value={writingI}
-                  onChange={(e) => setWritingI(e.target.value)}
-                />
-              </div>
-              <div class="col-fourth">
-                <input
-                  type="text"
-                  placeholder="Speaking"
-                  value={speakingI}
-                  onChange={(e) => setSpeakingI(e.target.value)}
-                />
-              </div>
-            </div>
-            <h4>TOEFL Scores</h4>
+            <h4>English Exam</h4>
 
+            <div class="input-group"><select onChange={(e) => setexam(e.target.value)}
+            >
+              <option>IELTS</option>
+              <option>TOEFL</option>
+            </select></div>
             <div class="input-group">
               <div class="col-fourth">
                 <input
                   type="text"
                   placeholder="Listening"
-                  value={listeningT}
-                  onChange={(e) => setListeningT(e.target.value)}
+                  value={listeing}
+                  onChange={(e) => setListening(e.target.value)}
                 />
               </div>
               <div class="col-fourth">
                 <input
                   type="text"
                   placeholder="Reading"
-                  value={readingT}
-                  onChange={(e) => setReadingT(e.target.value)}
+                  value={reading}
+                  onChange={(e) => setReading(e.target.value)}
                 />
               </div>
               <div class="col-fourth">
                 <input
                   type="text"
                   placeholder="Writing"
-                  value={writingT}
-                  onChange={(e) => setWritingT(e.target.value)}
+                  value={writing}
+                  onChange={(e) => setWriting(e.target.value)}
                 />
               </div>
               <div class="col-fourth">
                 <input
                   type="text"
                   placeholder="Speaking"
-                  value={speakingT}
-                  onChange={(e) => setSpeakingT(e.target.value)}
+                  value={speaking}
+                  onChange={(e) => setSpeaking(e.target.value)}
                 />
               </div>
             </div>
+
           </div>
 
 
           <button type="submit" onClick={addUser}>
             Add details
           </button>
-
         </form>
       </div>
+      {console.log(exam)}
+
     </div>
   );
 }

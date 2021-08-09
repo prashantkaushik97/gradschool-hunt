@@ -61,11 +61,11 @@ function ProfileScores() {
           <Logo>
             <SchoolIcon />
           </Logo>
-          <h5>IELTS</h5>
-          <h6>Listening: {info.academics?.ielts.listeingI}</h6>
-          <h6>Reading: {info[1]?.readingI}</h6>
-          <h6>Writing: {info[1]?.writingI}</h6>
-          <h6>Speaking: {info[1]?.speakingI}</h6>
+          <h5>{info?.academics?.english?.exam}</h5>
+          <h6>Listening: {info?.academics?.english?.listeing}</h6>
+          <h6>Reading: {info?.academics?.english?.reading}</h6>
+          <h6>Writing: {info?.academics?.english?.writing}</h6>
+          <h6>Speaking: {info?.academics?.english?.speaking}</h6>
         </GradScore>
       </Info>
       <Info className="publications">
@@ -74,36 +74,13 @@ function ProfileScores() {
             <DescriptionIcon />
           </Logo>
           <h5>GRE</h5>
-          <h6>Quants: {info[0]?.greQ}</h6>
-          <h6>Verbal: {info[0]?.greV}</h6>
-          <h6>AWA: {info[0]?.greAWA}</h6>
+          <h6>Quants: {info?.academics?.gre?.greQ}</h6>
+          <h6>Verbal: {info?.academics?.gre?.greV}</h6>
+          <h6>AWA: {info?.academics?.gre?.greAWA}</h6>
         </Publications>
       </Info>
-      <Info className="experience">
-        <Experience>
-          <Logo>
-            <WorkIcon />
-          </Logo>
-          <h5>TOEFL</h5>
-          <h6>Total: 11 months</h6>
 
-          <h6>Listening: {info[2]?.listeingT}</h6>
-          <h6>Reading: {info[2]?.readingT}</h6>
-          <h6>Writing: {info[2]?.writingT}</h6>
-          <h6>Speaking: {info[2]?.speakingT}</h6>
-        </Experience>
-      </Info>
-      <Info className="projects">
-        <Publications>
-          <Logo>
-            <BuildIcon />
-          </Logo>
-          <h5>Projects</h5>
-          <h6>Total: 6</h6>
 
-          <span>Revamping Supermarkets with AI and RSSi</span>
-        </Publications>
-      </Info>
     </Container>
   );
 }

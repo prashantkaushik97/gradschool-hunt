@@ -12,6 +12,8 @@ import { selectUser } from "../features/userSlice";
 function ProfileApplications() {
   const user = useSelector(selectUser);
   const [Click, setClick] = useState(true);
+  const [intake, setIntake] = useState("")
+  const [year, setyear] = useState("")
   const handleClick = () => {
     setClick(!Click);
   };
@@ -55,6 +57,31 @@ function ProfileApplications() {
     { value: "Canada", label: "Canada" },
     { value: "Australia", label: "Australia" },
   ];
+  const intakes = [
+    {
+      value: "fall", label: "Fall"
+    },
+    {
+      value: "winter", label: "winter"
+    },
+    {
+      value: "spring", label: "spring"
+    }
+  ]
+  const years = [
+    {
+      value: "2019", label: "2019"
+    },
+    {
+      value: "2020", label: "2020"
+    },
+    {
+      value: "2021", label: "2021"
+    },
+    {
+      value: "2022", label: "2022"
+    }
+  ]
   const styles = {
     control: (base, state) => ({
       ...base,
@@ -67,7 +94,9 @@ function ProfileApplications() {
     }),
   };
   const addApplication = (event) => {
+
     event.preventDefault();
+
     let uni = document.querySelectorAll(".css-1uccc91-singleValue")[1]
       ?.textContent;
     db.collection("users")
@@ -77,11 +106,12 @@ function ProfileApplications() {
         university: uni,
         course: course,
         status: "applied",
+        year: year,
+        session: intake
       })
       .then(() => {
         fetchApplications();
       });
-    //    setAdded(true)
   };
 
   const fetchApplications = () => {
@@ -140,6 +170,22 @@ function ProfileApplications() {
                   setCourse(e.target.value);
                 }}
               ></input>
+              <Select
+                placeholder={<div>Year</div>}
+                options={years}
+                onChange={(value) => {
+                  setyear(value.label);
+                }}
+                styles={styles}
+              />
+              <Select
+                placeholder={<div>Session</div>}
+                options={intakes}
+                onChange={(value) => {
+                  setIntake(value.label);
+                }}
+                styles={styles}
+              />
               <input
                 type="submit"
                 onClick={(e) => {

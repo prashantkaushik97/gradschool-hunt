@@ -15,7 +15,6 @@ function DetailBox() {
   const [isRejects, setRejects] = useState(false);
   function handleToggle(type) {
     if (type == "academics") {
-      console.log("clicked");
       setAcademics(true);
       setScores(false);
       setApplications(false);

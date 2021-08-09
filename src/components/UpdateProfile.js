@@ -19,7 +19,7 @@ function UpdateProfile() {
 
         db.collection("users")
             .doc(user?.email)
-            .update({
+            .set({
                 profile: {
                     fName: fName,
                     lName: lName,

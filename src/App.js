@@ -19,6 +19,7 @@ import Decisions from "./components/Decisions";
 import UpdateAcademics from "./components/UpdateAcademics";
 import UpdateProfile from "./components/UpdateProfile";
 import Home2 from "./components/Home2";
+import ViewProfile from "./components/ViewProfile";
 
 function App() {
   const user = useSelector(selectUser);
@@ -45,6 +46,10 @@ function App() {
         <Route exact path="/">
 
           <Home />
+        </Route>
+        <Route exact path="/viewProfile">
+
+          <ViewProfile />
         </Route>
         <Route exact path="/decisions">
 
