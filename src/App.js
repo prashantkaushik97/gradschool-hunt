@@ -47,7 +47,9 @@ function App() {
 
           <Home />
         </Route>
+
         <Route exact path="/viewProfile">
+          <Header />
 
           <ViewProfile />
         </Route>
