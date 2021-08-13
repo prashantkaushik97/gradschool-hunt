@@ -98,7 +98,7 @@ function Decisions({ uni }) {
                     <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
                     <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
                   </ul>
-                  <button onClick={(e) => { view(e, i) }} type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
+                  <button onClick={(e) => { view(e, i) }} type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">View Profile</button>
                   <div class="mt-4">
                     <div class="row">
                       <div class="col-3">

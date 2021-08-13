@@ -6,7 +6,7 @@ import { db } from "../firebase";
 function ViewProfile() {
     const [info, setInfo] = useState([]);
     const [userObject, setuserObject] = useState([])
-
+    const [EngScore, setEngScore] = useState(null)
     const location = useLocation();
     const fetchApplications = () => {
         setInfo([]);
@@ -19,6 +19,17 @@ function ViewProfile() {
                     var data = element.data();
                     setInfo((arr) => [...arr, data]);
                 });
+            }).then(() => {
+                if (userObject[0]?.academics?.english.exam == "IELTS") {
+                    let score = parseInt(userObject[0]?.academics?.english.listening) + parseInt(userObject[0]?.academics?.english.reading) + parseInt(userObject[0]?.academics?.english.writing) + parseInt(userObject[0]?.academics?.english.speaking)
+                    setEngScore(Math.round(score / 4))
+
+                }
+                else {
+                    let score = parseInt(userObject[0]?.academics?.english.listening) + parseInt(userObject[0]?.academics?.english.reading) + parseInt(userObject[0]?.academics?.english.writing) + parseInt(userObject[0]?.academics?.english.speaking)
+                    setEngScore(Math.round(score))
+
+                }
             });
         db.collection("users").doc(location?.state?.email).get().then((doc) => {
             setuserObject([])
@@ -35,7 +46,8 @@ function ViewProfile() {
     useEffect(() => {
         fetchApplications()
 
-    }, [])
+
+    }, [EngScore])
     return (
         <div className="viewprofile">
             {console.log(userObject)}
@@ -53,8 +65,7 @@ function ViewProfile() {
                             </div>
                             <ul className="nav nav-pills nav-stacked">
                                 <li className="active"><a href="#"> <i className="fa fa-user" /> Profile</a></li>
-                                <li><a href="#"> <i className="fa fa-calendar" /> Recent Activity </a></li>
-                                <li><a href="#"> <i className="fa fa-edit" /> Edit profile</a></li>
+                                <li><a href="#"> <i className="fa fa-calendar" /> Activity </a></li>
                             </ul>
                         </div>
                     </div>
@@ -63,22 +74,22 @@ function ViewProfile() {
                         <div className="panel">
 
                             <div className="panel-body bio-graph-info">
-                                <h1>Bio Graph</h1>
+                                <h1>Profile</h1>
                                 <div className="row">
                                     <div className="bio-row">
-                                        <p><span>First Name </span>: Camila</p>
+                                        <p><span>GRE </span>: {parseInt(userObject[0]?.academics?.gre.greV) + parseInt(userObject[0]?.academics?.gre.greQ)} - Q{userObject[0]?.academics?.gre.greQ} V{userObject[0]?.academics?.gre.greV} AWA{userObject[0]?.academics?.gre.greAWA}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Last Name </span>: Smith</p>
+                                        <p><span>{userObject[0]?.academics?.english.exam} </span>: Overall {EngScore} - L:{userObject[0]?.academics?.english.listening} R:{userObject[0]?.academics?.english.reading} W:{userObject[0]?.academics?.english.writing} S:{userObject[0]?.academics?.english.speaking}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Country </span>: Australia</p>
+                                        <p><span>Graduation </span>: {userObject[0]?.academics?.undergrad.institute}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Birthday</span>: 13 July 1983</p>
+                                        <p><span>Stream</span>: {userObject[0]?.academics?.undergrad.stream}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Occupation </span>: UI Designer</p>
+                                        <p><span> </span>: UI Designer</p>
                                     </div>
                                     <div className="bio-row">
                                         <p><span>Email </span>: jsmith@flatlab.com</p>

@@ -12,10 +12,12 @@ function UpdateAcademics() {
   const [greQ, setGreQ] = useState("");
   const [greV, setGreV] = useState("");
   const [greAWA, setGreAWA] = useState("");
-  const [listeing, setListening] = useState("");
+  const [listening, setListening] = useState("");
   const [reading, setReading] = useState("");
   const [speaking, setSpeaking] = useState("");
   const [writing, setWriting] = useState("");
+  const [institute, setinstitute] = useState("")
+  const [stream, setstream] = useState("")
   const [exam, setexam] = useState("IELTS")
   const addUser = (event) => {
     event.preventDefault();
@@ -30,13 +32,15 @@ function UpdateAcademics() {
           },
           english: {
             exam: exam,
-            listeing: listeing,
+            listening: listening,
             reading: reading,
             speaking: speaking,
             writing: writing,
           },
           undergrad: {
             gradScore: gradScore,
+            institute: institute,
+            stream: stream
           }
         }
       })
@@ -46,12 +50,28 @@ function UpdateAcademics() {
     history.push("/updateexperience");
   };
   return (
-    <div>
+    <div className="updateProfile">
       <div className="updateProfile__form">
         <form>
           <div class="row">
-            <h4>Undergrad Percentage</h4>
+            <h4>Undergrad</h4>
             <div class="input-group">
+              <div class="col-third">
+                <input
+                  type="text"
+                  placeholder="University/College"
+                  value={institute}
+                  onChange={(e) => setinstitute(e.target.value)}
+                />
+              </div>
+              <div class="col-third">
+                <input
+                  type="text"
+                  placeholder="Stream"
+                  value={stream}
+                  onChange={(e) => setstream(e.target.value)}
+                />
+              </div>
               <div class="col-third">
                 <input
                   type="text"
@@ -100,7 +120,7 @@ function UpdateAcademics() {
                 <input
                   type="text"
                   placeholder="Listening"
-                  value={listeing}
+                  value={listening}
                   onChange={(e) => setListening(e.target.value)}
                 />
               </div>

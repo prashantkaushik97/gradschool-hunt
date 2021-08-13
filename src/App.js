@@ -63,9 +63,12 @@ function App() {
 
         </Route>
         <Route exact path="/updateprofile">
+          <Header />
           <UpdateProfile />
         </Route>
         <Route exact path="/updateexperience">
+          <Header />
+
           <UpdateExperience />
         </Route>
         <Route exact path="/signup">

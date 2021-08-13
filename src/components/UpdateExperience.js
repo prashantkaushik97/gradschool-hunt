@@ -91,8 +91,7 @@ function UpdateExperience() {
     return (
 
 
-        <div>
-            <Header />
+        <div className="updateProfile">
             <div class="updateProfile__form">
                 <form>
                     <div class="row">
