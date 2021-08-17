@@ -10,9 +10,10 @@ import { useHistory } from "react-router-dom";
 
 function Decisions({ uni }) {
   const [userEmail, setuserEmail] = useState([])
-  const [decision, setDecision] = useState("admitted")
+  const [decision, setDecision] = useState("All")
   let history = useHistory();
   const [userObject, setuserObject] = useState([])
+  const [courseObj, setcourseObj] = useState([])
   const view = (e, i) => {
     e.preventDefault()
     console.log(i)
@@ -44,42 +45,85 @@ function Decisions({ uni }) {
     setuserObject([]);
     setuserEmail([])
     setInfo([])
-    db.collection("universities")
-      .doc(uni)
-      .collection("decisions").where("status", "==", decision)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((element) => {
-          let data = element.data();
-          setInfo((arr) => [...arr, data]);
-          setuserEmail((arr) => [...arr, data.user])
-          db.collection("users").doc(data.user).get().then((doc) => {
-            if (doc.exists) {
-              console.log("Document data:", doc.data());
-              setuserObject((arr) => [...arr, doc.data()])
+    if (decision == "All") {
+      db.collection("universities")
+        .doc(uni)
+        .collection("decisions")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((element) => {
+            let data = element.data();
+            setInfo((arr) => [...arr, data]);
+            setuserEmail((arr) => [...arr, data.user])
+            db.collection("users").doc(data.user).get().then((doc) => {
+              if (doc.exists) {
+                console.log("Document data:", doc.data());
+                setuserObject((arr) => [...arr, doc.data()])
 
-            } else {
-              console.log("No such document!");
-            }
+              } else {
+                console.log("No such document!");
+              }
 
-          }).then(console.log(info));
+            }).then(console.log(info));
 
+          });
         });
-      });
+    }
+    else {
+      db.collection("universities")
+        .doc(uni)
+        .collection("decisions").where("status", "==", decision)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((element) => {
+            let data = element.data();
+            setInfo((arr) => [...arr, data]);
+            setuserEmail((arr) => [...arr, data.user])
+            db.collection("users").doc(data.user).get().then((doc) => {
+              if (doc.exists) {
+                console.log("Document data:", doc.data());
+                setuserObject((arr) => [...arr, doc.data()])
+
+              } else {
+                console.log("No such document!");
+              }
+
+            }).then(console.log(info));
+
+          });
+        });
+    }
   };
   useEffect(() => {
     fetchApplications()
+
   }, [uni, decision])
   return (
     <div style={{ backgroundColor: "white" }}>
+      <div className="decision__box">
+        <div className="decisions__filter">
+          <Select placeholder={<div>Decision</div>} options={decisions} onChange={(value) => {
+            setDecision(value.label)
+          }} styles={styles} />
+        </div >
+        <div className="decisions__filter">
+          <Select placeholder={<div>Course</div>} options={decisions} onChange={(value) => {
+            setDecision(value.label)
+          }} styles={styles} />
+        </div>
+      </div>
+
+
       {console.log(userObject)}
       <section className="probootstrap-section" >
-        <Select placeholder={<div>Status</div>} options={decisions} onChange={(value) => {
-          setDecision(value.label)
-        }} styles={styles} />
+
+
         <div className="container">
+
           <div className="row">
+
             <div className="col-md-6 col-md-offset-3 text-center section-heading">
+
               <h2>{decision} in  {uni}</h2>
             </div>
           </div>
@@ -104,24 +148,29 @@ function Decisions({ uni }) {
                       <div class="col-3">
                         <div class="mt-3">
                           <h4>GRE</h4>
-                          <p class="mb-0 text-muted">{parseInt(userObject[i]?.academics?.gre?.greV) + parseInt(userObject[i]?.academics?.gre?.greQ)}</p>
+                          <p class="mb-0 text-muted">Total:{parseInt(userObject[i]?.academics?.gre?.greV) + parseInt(userObject[i]?.academics?.gre?.greQ)}</p>
+                          Q{userObject[i]?.academics?.gre.greQ} V{userObject[i]?.academics?.gre.greV} AWA{userObject[i]?.academics?.gre.greAWA}
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="mt-3">
-                          <h4>IELTS</h4>
-                          <p class="mb-0 text-muted">Income amounts</p>
+                          <h4>{userObject[i]?.academics?.english?.exam}</h4>
+                          {userObject[i]?.academics?.english?.exam == "IELTS" ? <p class="mb-0 text-muted">Overall: {Math.round((parseInt(userObject[i]?.academics?.english.listening) + parseInt(userObject[i]?.academics?.english.reading) + parseInt(userObject[i]?.academics?.english.writing) + parseInt(userObject[i]?.academics?.english.speaking)) / 4)}</p> :
+                            <p class="mb-0 text-muted">Overall: {Math.round(parseInt(userObject[i]?.academics?.english.listening) + parseInt(userObject[i]?.academics?.english.reading) + parseInt(userObject[i]?.academics?.english.writing) + parseInt(userObject[i]?.academics?.english.speaking))}</p>
+                          }
+                          L:{userObject[i]?.academics?.english.listening} R:{userObject[i]?.academics?.english.reading} W:{userObject[i]?.academics?.english.writing} S:{userObject[i]?.academics?.english.speaking}
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="mt-3">
                           <h4>UG</h4>
-                          <p class="mb-0 text-muted">Income amounts</p>
+                          <p class="mb-0 text-muted">{userObject[i]?.academics?.undergrad?.stream}</p>
+                          {userObject[i]?.academics?.undergrad?.gradScore}%
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="mt-3">
-                          <h4>Publications</h4>
+                          <h4>Experience</h4>
                           <p class="mb-0 text-muted">Total Transactions</p>
                         </div>
                       </div>

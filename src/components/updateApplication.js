@@ -27,8 +27,8 @@ function updateApplication(user, university, course) {
                     {course}
                 </span>
                 <br />
-                <Admit onClick={(e) => { decision(e, university, course, decisionDate, "admitted") }}>Admitted</Admit>
-                <Reject onClick={(e) => { decision(e, university, course, decisionDate, "rejected") }}>Rejected</Reject>
+                <Admit onClick={(e) => { decision(e, university, course, decisionDate, "Admitted") }}>Admitted</Admit>
+                <Reject onClick={(e) => { decision(e, university, course, decisionDate, "Rejected") }}>Rejected</Reject>
 
                 <input type="date" value="decisionDate" onChange={(e) => setDecisionDate((e.target.value))}></input>
 

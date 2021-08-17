@@ -39,7 +39,7 @@ function UpdateExperience() {
 
 
         let exp = {}
-        exp.name = employer
+        exp.employer = employer
         exp.designation = designation
         exp.start = start
         exp.end = end
@@ -55,8 +55,7 @@ function UpdateExperience() {
                 db.collection("users")
                     .doc(user?.email)
                     .collection("experience")
-                    .doc(employer)
-                    .set({
+                    .add({
                         designation: designation,
                         startDate: start,
                         endDate: end
@@ -76,8 +75,8 @@ function UpdateExperience() {
                 db.collection("users")
                     .doc(user?.email)
                     .collection("experience")
-                    .doc(x.employer)
-                    .set({
+                    .add({
+                        employer: x.employer,
                         designation: x.designation,
                         startDate: x.start,
                         endDate: x.end
@@ -100,7 +99,7 @@ function UpdateExperience() {
                             return (
                                 <div className="updateExperience__list">
                                     <div className="updateExperience__name">
-                                        {item.name}
+                                        {item.employer}
                                     </div>
                                     <div className="updateExperience__name">
                                         {item.designation}

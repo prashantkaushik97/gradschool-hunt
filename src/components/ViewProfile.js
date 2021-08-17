@@ -20,6 +20,13 @@ function ViewProfile() {
                     setInfo((arr) => [...arr, data]);
                 });
             }).then(() => {
+
+            });
+        db.collection("users").doc(location?.state?.email).get().then((doc) => {
+            setuserObject([])
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+                setuserObject((arr) => [...arr, doc.data()])
                 if (userObject[0]?.academics?.english.exam == "IELTS") {
                     let score = parseInt(userObject[0]?.academics?.english.listening) + parseInt(userObject[0]?.academics?.english.reading) + parseInt(userObject[0]?.academics?.english.writing) + parseInt(userObject[0]?.academics?.english.speaking)
                     setEngScore(Math.round(score / 4))
@@ -30,18 +37,12 @@ function ViewProfile() {
                     setEngScore(Math.round(score))
 
                 }
-            });
-        db.collection("users").doc(location?.state?.email).get().then((doc) => {
-            setuserObject([])
-            if (doc.exists) {
-                console.log("Document data:", doc.data());
-                setuserObject((arr) => [...arr, doc.data()])
-
             } else {
                 console.log("No such document!");
             }
 
         })
+
     };
     useEffect(() => {
         fetchApplications()
@@ -50,7 +51,7 @@ function ViewProfile() {
     }, [EngScore])
     return (
         <div className="viewprofile">
-            {console.log(userObject)}
+            {console.log(EngScore)}
             {console.log(info)}
             <div className="container bootstrap snippets bootdey">
                 <div className="row">

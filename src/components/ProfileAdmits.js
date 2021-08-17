@@ -37,7 +37,7 @@ function ProfileAdmits() {
     setInfo([]);
     db.collection("users")
       .doc(user?.email)
-      .collection("Applications").where("status", "==", "admitted")
+      .collection("Applications").where("status", "==", "Admitted")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {

@@ -45,7 +45,7 @@ function App() {
       <Switch>
         <Route exact path="/">
 
-          <Home />
+          <Home2 />
         </Route>
 
         <Route exact path="/viewProfile">
@@ -58,10 +58,7 @@ function App() {
           <SearchDecisions />
 
         </Route>
-        <Route exact path="/home2">
-          <Home2 />
 
-        </Route>
         <Route exact path="/updateprofile">
           <Header />
           <UpdateProfile />

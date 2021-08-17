@@ -15,18 +15,6 @@ function ProfileRejects() {
   const handleClick = () => {
     setClick(!Click)
   };
-  const admitted = (e, university, course) => {
-
-    e.preventDefault()
-    db.collection("users")
-      .doc(user?.email).collection("Applications").doc(university).set({
-        university: university,
-        course: course,
-        status: "admitted"
-      }).then(() => {
-        fetchApplications()
-      })
-  }
 
   const [info, setInfo] = useState([]);
 
@@ -37,7 +25,7 @@ function ProfileRejects() {
     setInfo([]);
     db.collection("users")
       .doc(user?.email)
-      .collection("Applications").where("status", "==", "rejected")
+      .collection("Applications").where("status", "==", "Rejected")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {
