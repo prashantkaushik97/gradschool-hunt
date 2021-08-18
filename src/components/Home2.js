@@ -49,12 +49,12 @@ function Home2() {
                                 </div>
                             </div>
                         </li>
-                        <li style={{ backgroundImage: `url(${slider_1})` }} className="overlay">
+                        <li style={{ backgroundImage: `url(https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2019/12/oxford-1576245233.jpg)` }} className="overlay">
                             <div className="container">
                                 <div className="row">
                                     <div className="col-md-8 col-md-offset-2">
                                         <div className="probootstrap-slider-text text-center">
-                                            <h1 className="probootstrap-heading probootstrap-animate">Helping Each of Our Students Fulfill the Potential</h1>
+                                            <h1 className="probootstrap-heading probootstrap-animate">Helping Students Fulfill their Potential</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -159,26 +159,27 @@ function Home2() {
                                 <div className="probootstrap-service-2 probootstrap-animate">
                                     <div className="image">
                                         <div className="image-bg">
-                                            <img src="img/img_sm_1.jpg" alt="Free Bootstrap Template by uicookies.com" />
+                                            <img src="https://www.thebalancesmb.com/thmb/iIV7A--elKPnwhB1_-T3gRVfEUM=/1540x1155/smart/filters:no_upscale()/Stocksy_woman-writing-laptop_476082-57ab432d3df78cf459975331.jpg" />
                                         </div>
                                     </div>
                                     <div className="text">
-                                        <span className="probootstrap-meta"><i className="icon-calendar2" /> July 10, 2017</span>
-                                        <h3>Application Design</h3>
-                                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam quos quis nisi voluptatum architecto rerum error.</p>
-                                        <p><a href="#" className="btn btn-primary">Read More</a> </p>
+                                        <span className="probootstrap-meta">Prashant Kaushik</span>
+
+                                        <h3>Writing a unique SOP</h3><br></br>
+                                        <p>Writing a Statement of Purpose, or the essays, is the most important step and perhaps the biggest challenge for students applying to universities abroad. Here's your guide on how to make your SOP standout and win admits for MS.</p>
+                                        <p><a href="/article_sop" className="btn btn-primary">Read More</a> </p>
                                     </div>
                                 </div>
                                 <div className="probootstrap-service-2 probootstrap-animate">
                                     <div className="image">
                                         <div className="image-bg">
-                                            <img src="img/img_sm_3.jpg" alt="Free Bootstrap Template by uicookies.com" />
+                                            <img src="https://cdn.britannica.com/85/13085-050-C2E88389/Corpus-Christi-College-University-of-Cambridge-England.jpg" alt="Free Bootstrap Template by uicookies.com" />
                                         </div>
                                     </div>
                                     <div className="text">
-                                        <span className="probootstrap-meta"><i className="icon-calendar2" /> July 10, 2017</span>
-                                        <h3>Chemical Engineering</h3>
-                                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam quos quis nisi voluptatum architecto rerum error.</p>
+                                        <span className="probootstrap-meta">Prashant Kaushik</span>
+                                        <h3>Shortlisting Universities for Masters.</h3><br />
+                                        <p>Planning to pursue higher studies in the USA or anywhere abroad often gets complicated as one does not know on what basis he/she should select a university. Here's your guide on how to shortlist universities for MS.</p>
                                         <p><a href="#" className="btn btn-primary">Read More</a> </p>
                                     </div>
                                 </div>
@@ -223,93 +224,7 @@ function Home2() {
                     </div>
 
                 </section>
-                <section className="probootstrap-section" style={{ paddingTop: "5px", marginTop: "0px" }}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate">
-                                <h2>Meet Our Team</h2>
-                            </div>
-                        </div>
-                        {/* END row */}
-                        <div className="row">
-                            <div className="col-md-3 col-sm-6">
-                                <div className="probootstrap-teacher text-center probootstrap-animate">
-                                    <figure className="media">
-                                        <img src="img/person_1.jpg" alt="Free Bootstrap Template by uicookies.com" className="img-responsive" />
-                                    </figure>
-                                    <div className="text">
-                                        <h3>Prashant Kaushik</h3>
-                                        <p>Founder</p>
-                                        <ul className="probootstrap-footer-social">
-                                            <li className="twitter"><a href="#"><i className="icon-twitter" /></a></li>
-                                            <li className="facebook"><a href="#"><i className="icon-facebook2" /></a></li>
-                                            <li className="instagram"><a href="#"><i className="icon-instagram2" /></a></li>
-                                            <li className="google-plus"><a href="#"><i className="icon-google-plus" /></a></li>
-                                        </ul>
-                                        <ul className="probootstrap-footer-social">
-                                            <li className="twitter"><a href="#">GRE<i className="icon-twitter" /></a></li>
-                                            <li className="facebook"><a href="#"><i className="icon-facebook2" /></a></li>
-                                            <li className="instagram"><a href="#"><i className="icon-instagram2" /></a></li>
-                                            <li className="google-plus"><a href="#"><i className="icon-google-plus" /></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-3 col-sm-6">
-                                <div className="probootstrap-teacher text-center probootstrap-animate">
-                                    <figure className="media">
-                                        <img src="img/person_5.jpg" alt="Free Bootstrap Template by uicookies.com" className="img-responsive" />
-                                    </figure>
-                                    <div className="text">
-                                        <h3>Janet Morris</h3>
-                                        <p>English Teacher</p>
-                                        <ul className="probootstrap-footer-social">
-                                            <li className="twitter"><a href="#"><i className="icon-twitter" /></a></li>
-                                            <li className="facebook"><a href="#"><i className="icon-facebook2" /></a></li>
-                                            <li className="instagram"><a href="#"><i className="icon-instagram2" /></a></li>
-                                            <li className="google-plus"><a href="#"><i className="icon-google-plus" /></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="clearfix visible-sm-block visible-xs-block" />
-                            <div className="col-md-3 col-sm-6">
-                                <div className="probootstrap-teacher text-center probootstrap-animate">
-                                    <figure className="media">
-                                        <img src="img/person_6.jpg" alt="Free Bootstrap Template by uicookies.com" className="img-responsive" />
-                                    </figure>
-                                    <div className="text">
-                                        <h3>Linda Reyez</h3>
-                                        <p>Math Teacher</p>
-                                        <ul className="probootstrap-footer-social">
-                                            <li className="twitter"><a href="#"><i className="icon-twitter" /></a></li>
-                                            <li className="facebook"><a href="#"><i className="icon-facebook2" /></a></li>
-                                            <li className="instagram"><a href="#"><i className="icon-instagram2" /></a></li>
-                                            <li className="google-plus"><a href="#"><i className="icon-google-plus" /></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-3 col-sm-6">
-                                <div className="probootstrap-teacher text-center probootstrap-animate">
-                                    <figure className="media">
-                                        <img src="img/person_7.jpg" alt="Free Bootstrap Template by uicookies.com" className="img-responsive" />
-                                    </figure>
-                                    <div className="text">
-                                        <h3>Jessa Sy</h3>
-                                        <p>Physics Teacher</p>
-                                        <ul className="probootstrap-footer-social">
-                                            <li className="twitter"><a href="#"><i className="icon-twitter" /></a></li>
-                                            <li className="facebook"><a href="#"><i className="icon-facebook2" /></a></li>
-                                            <li className="instagram"><a href="#"><i className="icon-instagram2" /></a></li>
-                                            <li className="google-plus"><a href="#"><i className="icon-google-plus" /></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+
                 <section className="probootstrap-section probootstrap-bg probootstrap-section-colored probootstrap-testimonial" style={{ backgroundImage: 'url(img/slider_4.jpg)' }}>
                     <div className="container">
                         <div className="row">
@@ -356,8 +271,7 @@ function Home2() {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate">
-                                <h2>Why Choose Enlight School</h2>
-                                <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                                <h2>Why use GradSchoolHunt.com?</h2>
                             </div>
                         </div>
                         <div className="row">
@@ -365,47 +279,35 @@ function Home2() {
                                 <div className="service left-icon probootstrap-animate">
                                     <div className="icon"><i className="icon-checkmark" /></div>
                                     <div className="text">
-                                        <h3>Consectetur Adipisicing</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                                        <h3>Shortlist Universities</h3>
+                                        <p>Our experts will guide you in the process of finding best universities that meet your requirements</p>
                                     </div>
                                 </div>
                                 <div className="service left-icon probootstrap-animate">
                                     <div className="icon"><i className="icon-checkmark" /></div>
                                     <div className="text">
-                                        <h3>Aliquid Dolorum Saepe</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                                        <h3>View Decisions</h3>
+                                        <p>You can view profiles of various applicants that have applied to your dream university along with the decision that they got.</p>
                                     </div>
                                 </div>
-                                <div className="service left-icon probootstrap-animate">
-                                    <div className="icon"><i className="icon-checkmark" /></div>
-                                    <div className="text">
-                                        <h3>Eveniet Tempora Anisi</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                                    </div>
-                                </div>
+
                             </div>
                             <div className="col-md-6">
                                 <div className="service left-icon probootstrap-animate">
                                     <div className="icon"><i className="icon-checkmark" /></div>
                                     <div className="text">
-                                        <h3>Laboriosam Quod Dignissimos</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                                        <h3>Its Free!</h3>
+                                        <p>Becoming a part of the family is free. You dont have to pay anything to use our services.</p>
                                     </div>
                                 </div>
                                 <div className="service left-icon probootstrap-animate">
                                     <div className="icon"><i className="icon-checkmark" /></div>
                                     <div className="text">
-                                        <h3>Asperiores Maxime Modi</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
+                                        <h3>Join the community</h3>
+                                        <p>You are not alone! Join the community to network with aspirants who are on same boat.</p>
                                     </div>
                                 </div>
-                                <div className="service left-icon probootstrap-animate">
-                                    <div className="icon"><i className="icon-checkmark" /></div>
-                                    <div className="text">
-                                        <h3>Libero Maxime Molestiae</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.</p>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                         {/* END row */}
@@ -415,8 +317,8 @@ function Home2() {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <h2 className="probootstrap-animate" data-animate-effect="fadeInRight">Get your admission now!</h2>
-                                <a href="#" role="button" className="btn btn-primary btn-lg btn-ghost probootstrap-animate" data-animate-effect="fadeInLeft">Enroll</a>
+                                <h2 className="probootstrap-animate" data-animate-effect="fadeInRight">Join the community now!</h2>
+                                <a href="/signup" role="button" className="btn btn-primary btn-lg btn-ghost probootstrap-animate" data-animate-effect="fadeInLeft">Register</a>
                             </div>
                         </div>
                     </div>

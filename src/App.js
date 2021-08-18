@@ -20,6 +20,9 @@ import UpdateAcademics from "./components/UpdateAcademics";
 import UpdateProfile from "./components/UpdateProfile";
 import Home2 from "./components/Home2";
 import ViewProfile from "./components/ViewProfile";
+import Article from "./components/Article_sop";
+import Article_sop from "./components/Article_sop";
+import Article_shortlisting from "./components/Articles/Article_shortlisting";
 
 function App() {
   const user = useSelector(selectUser);
@@ -82,6 +85,14 @@ function App() {
         <Route exact path="/profile">
           <Header />
           <Profile />
+        </Route>
+        <Route exact path="/article_sop">
+          <Header />
+          <Article_sop />
+        </Route>
+        <Route exact path="/article_shortlisting">
+          <Header />
+          <Article_shortlisting />
         </Route>
       </Switch>
     </Router>
