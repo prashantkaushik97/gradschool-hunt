@@ -29,7 +29,7 @@ function Article_sop() {
                                             <h3>More Articles</h3>
                                             <ul className="probootstrap-side-menu">
                                                 <li><a href="/article_shortlisting">How to shortlist universities?</a></li>
-                                                <li><a href="#">Math Major</a></li>
+                                                <li><a href="/article_topcountries">Top countries for masters</a></li>
                                                 <li><a href="#">English Major</a></li>
                                             </ul>
                                         </div>

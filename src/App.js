@@ -23,6 +23,7 @@ import ViewProfile from "./components/ViewProfile";
 import Article from "./components/Article_sop";
 import Article_sop from "./components/Article_sop";
 import Article_shortlisting from "./components/Articles/Article_shortlisting";
+import Article_topCountries from "./components/Articles/Article_topCountries";
 
 function App() {
   const user = useSelector(selectUser);
@@ -93,6 +94,10 @@ function App() {
         <Route exact path="/article_shortlisting">
           <Header />
           <Article_shortlisting />
+        </Route>
+        <Route exact path="/article_topCountries">
+          <Header />
+          <Article_topCountries />
         </Route>
       </Switch>
     </Router>
