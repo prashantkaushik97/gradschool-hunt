@@ -102,21 +102,32 @@ const Container = styled.div`
   padding-top: 5px;
 
   width: 900px;
+  @media screen and (max-width: 880px) {
+    width: 500px;
+    margin: auto;
+   
+  }
   @media screen and (max-width: 677px) {
     width: 500px;
+    margin: auto;
   }
   @media screen and (max-width: 477px) {
     width: 300px;
+    margin: auto;
   }
+  
   .hidden {
     visibility: hidden;
   }
 `;
 const Navigator = styled.div`
   display: flex;
-
-  @media screen and (max-width: 477px) {
+cursor: pointer;
+  @media screen and (max-width: 880px) {
     width: 300px;
+    margin: auto;
+    display: block;
+    text-align: center;
     div {
       padding: 10px 40px 10px 40px;
       :hover {

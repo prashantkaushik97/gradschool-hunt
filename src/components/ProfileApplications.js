@@ -282,9 +282,14 @@ const GradScore = styled.div`
 `;
 
 const Modal = styled.div`
-  position: fixed;
-  width: 50%;
-  height: 50%;
+  display: flex;
+  /* background-color: red; */
+  @media screen and (max-width: 477px) {
+    
+    margin:auto;
+    
+
+  }
 `;
 const ModalContent = styled.div`
   background-color: white;
@@ -295,6 +300,15 @@ const ModalContent = styled.div`
   border-radius: 5px;
   border: 2px solid black;
   margin: auto auto;
+  text-align: center;
+  
+  @media screen and (max-width: 880px) {
+    
+    width:300px;
+    
+
+  }
+  
 `;
 const Admit = styled.button`
   color: red;

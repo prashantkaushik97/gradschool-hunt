@@ -30,13 +30,13 @@ function NavUser() {
         </NavLink>
       </li>
       <li className="nav-item">
-        <Button
-          style={{ color: "white" }}
+        <NavLink
+          to=''
           onClick={logoutOfApp}
-          variant="outlined"
+          className="nav-link"
         >
           Logout
-        </Button>
+        </NavLink>
       </li>
     </Nav>
   );
