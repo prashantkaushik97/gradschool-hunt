@@ -1,6 +1,6 @@
 import React from "react";
 import { Nav, Navbar, NavDropdown, Container } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { login, logout, selectUser } from "../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import NavGuest from "./NavGuest";
@@ -8,13 +8,15 @@ import NavUser from "./NavUser";
 import "./Header.css";
 function Header() {
   const user = useSelector(selectUser);
+  const history = useHistory();
+
   return (
     <div className="header">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Link to="/" className="navbar-brand">
-            Gradschool Hunt
-          </Link>
+
+          <a href="/" className="navbar-brand" >Gradschool Hunt</a>
+
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">

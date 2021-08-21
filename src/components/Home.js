@@ -10,7 +10,6 @@ import SearchIcon from '@material-ui/icons/Search';
 
 function Home() {
 
-  const [university, setUniversity] = useState(null);
   const [country, setCountry] = useState("USA");
   const [resetUni, setResetUni] = useState(false);
 
@@ -37,12 +36,13 @@ function Home() {
       <div className="home">
 
         <div className="home__search" >
-          <div className="home__bar"> <div className="home__country">
-            <Select placeholder={<div>Country</div>} options={options} onChange={(value) => {
-              setCountry(value.label)
-              setResetUni(true)
-            }} styles={styles} />
-          </div>
+          <div className="home__bar">
+            <div className="home__country">
+              <Select placeholder={<div>Country</div>} options={options} onChange={(value) => {
+                setCountry(value.label)
+                setResetUni(true)
+              }} styles={styles} />
+            </div>
             <div className="home__university">
               <UniversitySearch reset={resetUni} styles={styles} label="Choose a university" country={country} />
             </div>

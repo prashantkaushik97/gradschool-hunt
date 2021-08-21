@@ -19,6 +19,7 @@ function UpdateExperience() {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [currently, setCurrently] = useState(false);
+
     function difference(date1, date2) {
         if (currently) {
 
@@ -80,7 +81,8 @@ function UpdateExperience() {
                         designation: x.designation,
                         startDate: x.start,
                         endDate: x.end
-                    })
+                    }).then(history.push("/profile")
+                    )
                     .catch(function (error) {
                         console.error("Error adding Product: ", error);
                     });

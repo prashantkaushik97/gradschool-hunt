@@ -170,6 +170,9 @@ function Home2() {
                                         <p><a href="/article_sop" className="btn btn-primary">Read More</a> </p>
                                     </div>
                                 </div>
+
+                            </div>
+                            <div className="col-md-6">
                                 <div className="probootstrap-service-2 probootstrap-animate">
                                     <div className="image">
                                         <div className="image-bg">
@@ -180,35 +183,7 @@ function Home2() {
                                         <span className="probootstrap-meta">Prashant Kaushik</span>
                                         <h3>Shortlisting Universities for Masters.</h3><br />
                                         <p>Planning to pursue higher studies in the USA or anywhere abroad often gets complicated as one does not know on what basis he/she should select a university. Here's your guide on how to shortlist universities for MS.</p>
-                                        <p><a href="#" className="btn btn-primary">Read More</a> </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="probootstrap-service-2 probootstrap-animate">
-                                    <div className="image">
-                                        <div className="image-bg">
-                                            <img src="img/img_sm_2.jpg" alt="Free Bootstrap Template by uicookies.com" />
-                                        </div>
-                                    </div>
-                                    <div className="text">
-                                        <span className="probootstrap-meta"><i className="icon-calendar2" /> July 10, 2017</span>
-                                        <h3>Math Major</h3>
-                                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam quos quis nisi voluptatum architecto rerum error.</p>
-                                        <p><a href="#" className="btn btn-primary">Read More</a> </p>
-                                    </div>
-                                </div>
-                                <div className="probootstrap-service-2 probootstrap-animate">
-                                    <div className="image">
-                                        <div className="image-bg">
-                                            <img src="img/img_sm_4.jpg" alt="Free Bootstrap Template by uicookies.com" />
-                                        </div>
-                                    </div>
-                                    <div className="text">
-                                        <span className="probootstrap-meta"><i className="icon-calendar2" /> July 10, 2017</span>
-                                        <h3>English Major</h3>
-                                        <p>Laboriosam pariatur modi praesentium deleniti molestiae officiis atque numquam quos quis nisi voluptatum architecto rerum error.</p>
-                                        <p><a href="#" className="btn btn-primary">Read More</a> </p>
+                                        <p><a href="/article_shortlisting" className="btn btn-primary">Read More</a> </p>
                                     </div>
                                 </div>
 
@@ -328,8 +303,9 @@ function Home2() {
                         <div className="row">
                             <div className="col-md-4">
                                 <div className="probootstrap-footer-widget">
-                                    <h3>About The School</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro provident suscipit natus a cupiditate ab minus illum quaerat maxime inventore Ea consequatur consectetur hic provident dolor ab aliquam eveniet alias</p>
+                                    <p>Make the best of the only time you are going to be applying to universities. Most people only go through this process once in their lifetime. If done right, your dream university awaits you. If you have gained value from my content on YouTube, you know I am the best person to help you with your applications.
+
+                                    </p>
                                     <h3>Social</h3>
                                     <ul className="probootstrap-footer-social">
                                         <li><a href="#"><i className="icon-twitter" /></a></li>
@@ -357,9 +333,9 @@ function Home2() {
                                 <div className="probootstrap-footer-widget">
                                     <h3>Contact Info</h3>
                                     <ul className="probootstrap-contact-info">
-                                        <li><i className="icon-location2" /> <span>198 West 21th Street, Suite 721 New York NY 10016</span></li>
-                                        <li><i className="icon-mail" /><span>info@domain.com</span></li>
-                                        <li><i className="icon-phone2" /><span>+123 456 7890</span></li>
+                                        <li><i className="icon-location2" /> <span>Gurgaon</span></li>
+                                        <li><i className="icon-mail" /><span>help@gradschoolhunt.com</span></li>
+                                        <li><i className="icon-phone2" /><span>+91-8847340718</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -370,7 +346,7 @@ function Home2() {
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-8 text-left">
-                                    <p>© 2017 <a href="https://uicookies.com/">uiCookies:Enlight</a>. All Rights Reserved. Designed &amp; Developed with <i className="icon icon-heart" /> by <a href="https://uicookies.com/">uicookies.com</a></p>
+                                    <p>© 2021 <a href="https://gradschoolhunt.com/">Gradschoolhunt</a>. All Rights Reserved. Designed &amp; Developed <i className="icon icon-heart" /> by <a href="https://www.linkedin.com/in/kaushikprashant1997/">Prashant Kaushik</a></p>
                                 </div>
                                 <div className="col-md-4 probootstrap-back-to-top">
                                     <p><a href="#" className="js-backtotop">Back to top <i className="icon-arrow-long-up" /></a></p>
