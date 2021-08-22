@@ -8,6 +8,7 @@ import Select from "react-select";
 import { db, provider } from "../firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
+import './ProfileApplications.css'
 
 function ProfileApplications() {
   const user = useSelector(selectUser);
@@ -283,6 +284,7 @@ const GradScore = styled.div`
 
 const Modal = styled.div`
   display: flex;
+  margin-top: 60px;
   /* background-color: red; */
   @media screen and (max-width: 477px) {
     

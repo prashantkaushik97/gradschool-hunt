@@ -1,0 +1,12 @@
+.profileApplications_addApplication{
+    margin-top: 70px;
+    border-radius: 3px;
+    border: solid 1px;
+    width: 200px;
+}
+
+.profileApplications_addApplication:hover{
+    transition: 1s;
+    color: black;
+    
+}
